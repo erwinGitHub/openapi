@@ -60659,7 +60659,7 @@
         }
       }
     },
-    "/receptionNotes/{receptionNote}/lines/{sequence}/{texts}" : {
+    "/receptionNotes/{receptionNote}/lines/{sequence}/texts" : {
       "get" : {
         "tags" : [ "Purchase order" ],
         "summary" : "This program is used to load information from purchase order line text for RF device.",
