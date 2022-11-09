@@ -1627,7 +1627,7 @@
         }
       }
     },
-    "/kittingLists/{order}/nextLine}" : {
+    "/kittingLists/{order}/nextLine" : {
       "get" : {
         "tags" : [ "Manufacturing order" ],
         "summary" : "This program is used to load information from manufacturing order pick list for R/F device, next lin...",
