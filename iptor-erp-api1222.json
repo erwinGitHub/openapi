@@ -1,0 +1,4829 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Iptor.com ERP API",
+    "description" : "Iptor.com ERP API list",
+    "termsOfService" : "Terms of service",
+    "contact" : {
+      "name" : "Iptor",
+      "url" : "http://www.iptor.com",
+      "email" : "email@domain.com"
+    },
+    "license" : {
+      "name" : "License name",
+      "url" : "http://address.domain.com/license"
+    },
+    "version" : "1.0.0"
+  },
+
+  "tags" : [
+    {"name" : "Accounts payable"},
+    {"name" : "Accounts receivable"},
+    {"name" : "Alert"},
+    {"name" : "Area"},
+    {"name" : "Business partner"},
+    {"name" : "Company"},
+    {"name" : "Country"},
+    {"name" : "County"},
+    {"name" : "Currency"},
+    {"name" : "Data interchange"},
+    {"name" : "Default and replacement"},
+    {"name" : "Employee"},
+    {"name" : "Exchange rate"},
+    {"name" : "General interface"},
+    {"name" : "Incident"},
+    {"name" : "Instruction"},
+    {"name" : "Inventory"},
+    {"name" : "Invoice"},
+    {"name" : "ISO20022"},
+    {"name" : "Item"},
+    {"name" : "Item structure"},
+    {"name" : "Language"},
+    {"name" : "Location"},
+    {"name" : "Manufacturing order"},
+    {"name" : "Outbound shipment"},
+    {"name" : "Package"},
+    {"name" : "Pallet"},
+    {"name" : "Peppol"},
+    {"name" : "Pick label"},
+    {"name" : "Pick list"},
+    {"name" : "Processed cash"},
+    {"name" : "Processed payment"},
+    {"name" : "Purchase order"},
+    {"name" : "Put away"},
+    {"name" : "Replenishment"},
+    {"name" : "Requests and returns"},
+    {"name" : "Resource"},
+    {"name" : "Sales order"},
+    {"name" : "Sales pricing method"},
+    {"name" : "Sales quotation"},
+    {"name" : "Service order"},
+    {"name" : "Signature"},
+    {"name" : "State"},
+    {"name" : "Stock take"},
+    {"name" : "System"},
+    {"name" : "Unit"},
+    {"name" : "User"},
+    {"name" : "Vat"},
+    {"name" : "Warehouse"},
+    {"name" : "CRM approval log"},
+    {"name" : "CRM attribute"},
+    {"name" : "CRM business partner"},
+    {"name" : "CRM contact"},
+    {"name" : "CRM contact DC1"},
+    {"name" : "CRM domain"},
+    {"name" : "CRM item"},
+    {"name" : "CRM item DC1"},
+    {"name" : "CRM log"},
+    {"name" : "CRM note"},
+    {"name" : "CRM opportunity"},
+    {"name" : "CRM opportunity approval"},
+    {"name" : "CRM opportunity setup"},
+    {"name" : "CRM task"},
+    {"name" : "CRM template"},
+    {"name" : "CRM user"},
+
+    {"name" : "Under development"},
+    {"name" : "Deprecated"}
+  ],  
+  "paths" : {
+    "/itemSalesPrices" : {
+      "get" : {
+        "tags" : [ "Item" ],
+        "summary" : "Program to get item sales prices",
+        "description" : "Program to get item sales prices",
+        "parameters" : [ {
+          "name" : "item",
+          "in" : "query",
+          "description" : "Item",
+          "schema" : {
+            "title" : "Item",
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Item"
+          }
+        }, {
+          "$ref" : "#/components/parameters/control-offset"
+        }, {
+          "$ref" : "#/components/parameters/control-limit"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "items" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "priceUnit" : {
+                                "title" : "Price unit",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Price unit"
+                              },
+                              "item" : {
+                                "title" : "Item",
+                                "maxLength" : 35,
+                                "type" : "string",
+                                "description" : "Item"
+                              },
+                              "salesPrice" : {
+                                "title" : "Sales price",
+                                "maximum" : 9999999999999.9999,
+                                "minimum" : -9999999999999.9999,
+                                "type" : "number",
+                                "description" : "Sales price",
+                                "format" : "double"
+                              },
+                              "vat" : {
+                                "title" : "VAT Y/N",
+                                "type" : "boolean",
+                                "description" : "VAT Y/N"
+                              },
+                              "actualQuantityDepPrices" : {
+                                "title" : "Actual quantity depending prices Y/N",
+                                "type" : "boolean",
+                                "description" : "Actual quantity depending prices Y/N"
+                              },
+                              "priceList" : {
+                                "title" : "Price list",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Price list"
+                              },
+                              "priceListType" : {
+                                "title" : "Price type",
+                                "maxLength" : 3,
+                                "type" : "string",
+                                "description" : "Price type"
+                              },
+                              "includedVATHandlingCode" : {
+                                "title" : "In price included VAT percentage (code)",
+                                "maxLength" : 4,
+                                "type" : "string",
+                                "description" : "In price included VAT percentage (code)"
+                              },
+                              "unit" : {
+                                "title" : "Unit",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Unit"
+                              },
+                              "validFromDate" : {
+                                "title" : "Valid from date",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Valid from date",
+                                "format" : "date"
+                              },
+                              "limitCode" : {
+                                "title" : "Limit code",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Limit code"
+                              },
+                              "vatIncluded" : {
+                                "title" : "VAT included in prices Y/N",
+                                "type" : "boolean",
+                                "description" : "VAT included in prices Y/N"
+                              },
+                              "currency" : {
+                                "title" : "Currency",
+                                "maxLength" : 4,
+                                "type" : "string",
+                                "description" : "Currency"
+                              },
+                              "freeOfCharge" : {
+                                "title" : "Free of charge Y/N",
+                                "type" : "boolean",
+                                "description" : "Free of charge Y/N"
+                              },
+                              "validToDate" : {
+                                "title" : "Valid to date",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Valid to date",
+                                "format" : "date"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "control" : {
+                      "title" : "Total records",
+                      "type" : "object",
+                      "properties" : {
+                        "total" : {
+                          "$ref" : "#/components/schemas/control-total"
+                        }
+                      },
+                      "description" : "Total number of records in file (array)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "itemSalesPrices.get",
+            "openCrossRef" : true,
+            "program" : "MGRR1431"
+          }
+        }
+      }
+    },
+    "/items/{item}/units" : {
+      "get" : {
+        "tags" : [ "Item" ],
+        "summary" : "Program to get item units",
+        "description" : "Program to get item units",
+        "parameters" : [ {
+          "name" : "item",
+          "in" : "path",
+          "required" : true,
+          "description" : "Item",
+          "schema" : {
+            "title" : "Item",
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Item"
+          }
+        }, {
+          "$ref" : "#/components/parameters/control-offset"
+        }, {
+          "$ref" : "#/components/parameters/control-limit"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "items" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "allowedOnMDC" : {
+                                "title" : "Unit allowed on MDC orders",
+                                "type" : "boolean",
+                                "description" : "Unit allowed on MDC orders"
+                              },
+                              "item" : {
+                                "title" : "Item",
+                                "maxLength" : 35,
+                                "type" : "string",
+                                "description" : "Item"
+                              },
+                              "allowedOnPurchase" : {
+                                "title" : "Unit allowed for purchase",
+                                "type" : "boolean",
+                                "description" : "Unit allowed for purchase"
+                              },
+                              "eanNumber" : {
+                                "title" : "EAN item",
+                                "maxLength" : 14,
+                                "type" : "string",
+                                "description" : "EAN item"
+                              },
+                              "length" : {
+                                "title" : "Length",
+                                "maximum" : 999999.999,
+                                "minimum" : -999999.999,
+                                "type" : "number",
+                                "description" : "Length",
+                                "format" : "float"
+                              },
+                              "allowedOnSale" : {
+                                "title" : "Unit allowed for sale",
+                                "type" : "boolean",
+                                "description" : "Unit allowed for sale"
+                              },
+                              "defaultPriceUnit" : {
+                                "title" : "Default price unit",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Default price unit"
+                              },
+                              "decimalsForUnit" : {
+                                "title" : "Number of decimals for unit",
+                                "maximum" : 9,
+                                "type" : "integer",
+                                "description" : "Number of decimals for unit",
+                                "format" : "int32"
+                              },
+                              "unit" : {
+                                "title" : "Unit",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Unit"
+                              },
+                              "grossWeight" : {
+                                "title" : "Gross weight",
+                                "maximum" : 999999.99999,
+                                "minimum" : -999999.99999,
+                                "type" : "number",
+                                "description" : "Gross weight",
+                                "format" : "float"
+                              },
+                              "netWeight" : {
+                                "title" : "Net weight",
+                                "maximum" : 999999.99999,
+                                "minimum" : -999999.99999,
+                                "type" : "number",
+                                "description" : "Net weight",
+                                "format" : "float"
+                              },
+                              "quantityConversionFactor" : {
+                                "title" : "Quantity conversion factor",
+                                "maximum" : 999999.999999999,
+                                "minimum" : -999999.999999999,
+                                "type" : "number",
+                                "description" : "Quantity conversion factor",
+                                "format" : "double"
+                              },
+                              "grossVolume" : {
+                                "title" : "Gross volume",
+                                "maximum" : 999999.99999,
+                                "minimum" : -999999.99999,
+                                "type" : "number",
+                                "description" : "Gross volume",
+                                "format" : "float"
+                              },
+                              "netVolume" : {
+                                "title" : "Net volume",
+                                "maximum" : 999999.99999,
+                                "minimum" : -999999.99999,
+                                "type" : "number",
+                                "description" : "Net volume",
+                                "format" : "float"
+                              },
+                              "width" : {
+                                "title" : "Width",
+                                "maximum" : 999999.999,
+                                "minimum" : -999999.999,
+                                "type" : "number",
+                                "description" : "Width",
+                                "format" : "float"
+                              },
+                              "allowedOnBOM" : {
+                                "title" : "Unit allowed on BOM",
+                                "type" : "boolean",
+                                "description" : "Unit allowed on BOM"
+                              },
+                              "height" : {
+                                "title" : "Height",
+                                "maximum" : 999999.999,
+                                "minimum" : -999999.999,
+                                "type" : "number",
+                                "description" : "Height",
+                                "format" : "float"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "control" : {
+                      "title" : "Total records",
+                      "type" : "object",
+                      "properties" : {
+                        "total" : {
+                          "$ref" : "#/components/schemas/control-total"
+                        }
+                      },
+                      "description" : "Total number of records in file (array)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "itemUnits.get",
+            "openCrossRef" : true,
+            "program" : "MGRR1430"
+          }
+        }
+      }
+    },
+    "/items/{item}/warehouseBasicInfos/{warehouse}" : {
+      "get" : {
+        "tags" : [ "Item" ],
+        "summary" : "Program gets basic item/warehouse data from SROSRO and SROIMI.",
+        "description" : "Program gets basic item/warehouse data from SROSRO and SROIMI.",
+        "parameters" : [ {
+          "name" : "item",
+          "in" : "path",
+          "description" : "Item",
+          "required" : true,
+          "schema" : {
+            "title" : "Item",
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Item"
+          }
+        }, {
+          "name" : "warehouse",
+          "in" : "path",
+          "description" : "Warehouse number",
+          "required" : true,
+          "schema" : {
+            "title" : "Warehouse number",
+            "maxLength" : 3,
+            "type" : "string",
+            "description" : "Warehouse number"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "suppliedFromWarehouse" : {
+                          "title" : "Supplied from warehouse",
+                          "maxLength" : 3,
+                          "type" : "string",
+                          "description" : "Supplied from warehouse"
+                        },
+                        "reorderPoint" : {
+                          "title" : "Reorder point",
+                          "maximum" : 999999999999.999,
+                          "minimum" : -999999999999.999,
+                          "type" : "number",
+                          "description" : "Reorder point",
+                          "format" : "double"
+                        },
+                        "itemClassOverride" : {
+                          "title" : "Item class, override value on warehouse level",
+                          "maxLength" : 1,
+                          "type" : "string",
+                          "description" : "Item class, override value on warehouse level"
+                        },
+                        "safetyStock" : {
+                          "title" : "Safety stock",
+                          "maximum" : 999999999999.999,
+                          "minimum" : -999999999999.999,
+                          "type" : "number",
+                          "description" : "Safety stock",
+                          "format" : "double"
+                        },
+                        "binLocation2" : {
+                          "title" : "Bin location 2",
+                          "maxLength" : 7,
+                          "type" : "string",
+                          "description" : "Bin location 2"
+                        },
+                        "safetyStockManual" : {
+                          "title" : "Safety stock manual",
+                          "maximum" : 999999999999.999,
+                          "minimum" : -999999999999.999,
+                          "type" : "number",
+                          "description" : "Safety stock manual",
+                          "format" : "double"
+                        },
+                        "binLocation1" : {
+                          "title" : "Bin location 1",
+                          "maxLength" : 7,
+                          "type" : "string",
+                          "description" : "Bin location 1"
+                        },
+                        "mainSupplier" : {
+                          "title" : "Main supplier number",
+                          "maxLength" : 11,
+                          "type" : "string",
+                          "description" : "Main supplier number"
+                        },
+                        "planningMethod" : {
+                          "title" : "Planning method",
+                          "maxLength" : 1,
+                          "type" : "string",
+                          "description" : "Planning method"
+                        },
+                        "responsible" : {
+                          "title" : "Responsible",
+                          "maxLength" : 10,
+                          "type" : "string",
+                          "description" : "Responsible"
+                        },
+                        "itemClass" : {
+                          "title" : "Item class",
+                          "maxLength" : 1,
+                          "type" : "string",
+                          "description" : "Item class"
+                        },
+                        "stockZone" : {
+                          "title" : "Stock zone",
+                          "maxLength" : 7,
+                          "type" : "string",
+                          "description" : "Stock zone"
+                        },
+                        "planner" : {
+                          "title" : "Planner",
+                          "maxLength" : 10,
+                          "type" : "string",
+                          "description" : "Planner"
+                        },
+                        "reorderPointManual" : {
+                          "title" : "ROP manual",
+                          "maximum" : 999999999999.999,
+                          "minimum" : -999999999999.999,
+                          "type" : "number",
+                          "description" : "ROP manual",
+                          "format" : "double"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "itemWarehouseBasicInfo.get",
+            "openCrossRef" : true,
+            "program" : "MGRR0099"
+          }
+        }
+      }
+    },
+    "/items" : {
+      "get" : {
+        "tags" : [ "Item" ],
+        "summary" : "This program is used to get items values.",
+        "description" : "This program is used to get items values. Program is mainly used as item window.",
+        "parameters" : [ {
+          "name" : "item",
+          "in" : "query",
+          "description" : "Item",
+          "schema" : {
+            "title" : "Item",
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Item"
+          }
+        }, {
+          "name" : "promotion",
+          "in" : "query",
+          "description" : "Items under promotion",
+          "schema" : {
+            "title" : "Items under promotion",
+            "type" : "boolean",
+            "description" : "Items under promotion"
+          }
+        }, {
+          "$ref" : "#/components/parameters/control-freeTextSearch"
+        }, {
+          "$ref" : "#/components/parameters/control-offset"
+        }, {
+          "$ref" : "#/components/parameters/control-limit"
+        }, {
+          "$ref" : "#/components/parameters/control-orderBy"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "items" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "drawingNumber" : {
+                                "type" : "string"
+                              },
+                              "itemType" : {
+                                "title" : "Item type",
+                                "maxLength" : 1,
+                                "type" : "string",
+                                "description" : "Item type"
+                              },
+                              "itemCharacteristicValue" : {
+                                "title" : "Value (characteristic)",
+                                "maxLength" : 12,
+                                "type" : "string",
+                                "description" : "Value (characteristic)"
+                              },
+                              "itemSector" : {
+                                "title" : "Item sector",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Item sector"
+                              },
+                              "description" : {
+                                "title" : "Description (account number)",
+                                "maxLength" : 30,
+                                "type" : "string",
+                                "description" : "Description (account number)"
+                              },
+                              "itemDiscountGroup" : {
+                                "title" : "Item Discount Group",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Item Discount Group"
+                              },
+                              "itemExtendedDescription" : {
+                                "type" : "string"
+                              },
+                              "defaultSalesUnit" : {
+                                "title" : "Default sales unit",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Default sales unit"
+                              },
+                              "responsible" : {
+                                "title" : "Responsible",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Responsible"
+                              },
+                              "commodityCode" : {
+                                "title" : "Commodity code",
+                                "maxLength" : 18,
+                                "type" : "string",
+                                "description" : "Commodity code"
+                              },
+                              "planner" : {
+                                "title" : "Planner",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Planner"
+                              },
+                              "itemCategory4" : {
+                                "title" : "Item category 4",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Item category 4"
+                              },
+                              "itemCategory3" : {
+                                "title" : "Item category 3",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Item category 3"
+                              },
+                              "itemGroup" : {
+                                "title" : "Item group",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Item group"
+                              },
+                              "item" : {
+                                "title" : "Item",
+                                "maxLength" : 35,
+                                "type" : "string",
+                                "description" : "Item"
+                              },
+                              "itemCategory2" : {
+                                "title" : "Item category 2",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Item category 2"
+                              },
+                              "stockingUnit" : {
+                                "type" : "string"
+                              },
+                              "itemCategory1" : {
+                                "title" : "Item category 1",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Item category 1"
+                              },
+                              "supplierQuotationGroup" : {
+                                "type" : "string"
+                              },
+                              "itemCategory6" : {
+                                "title" : "Item category 6",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Item category 6"
+                              },
+                              "itemCategory5" : {
+                                "title" : "Item category 5",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Item category 5"
+                              },
+                              "accountGroup" : {
+                                "title" : "Account group",
+                                "maxLength" : 4,
+                                "type" : "string",
+                                "description" : "Account group"
+                              },
+                              "itemFamily" : {
+                                "title" : "Item family",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Item family"
+                              },
+                              "creationDate" : {
+                                "title" : "Creation date",
+                                "maxLength" : 8,
+                                "type" : "string",
+                                "description" : "Creation date"
+                              },
+                              "mainSupplier" : {
+                                "title" : "Main supplier number",
+                                "maxLength" : 11,
+                                "type" : "string",
+                                "description" : "Main supplier number"
+                              },
+                              "userDefinedAlpha2" : {
+                                "title" : "User defined alpha field 2",
+                                "maxLength" : 15,
+                                "type" : "string",
+                                "description" : "User defined alpha field 2"
+                              },
+                              "itemCharacteristic" : {
+                                "title" : "Characteristic",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Characteristic"
+                              },
+                              "userDefinedAlpha1" : {
+                                "title" : "User defined alpha field 1",
+                                "maxLength" : 15,
+                                "type" : "string",
+                                "description" : "User defined alpha field 1"
+                              },
+                              "itemSegment4" : {
+                                "type" : "string"
+                              },
+                              "internalDescription" : {
+                                "type" : "string"
+                              },
+                              "itemSegment5" : {
+                                "type" : "string"
+                              },
+                              "itemSegment6" : {
+                                "type" : "string"
+                              },
+                              "msdsId" : {
+                                "type" : "string"
+                              },
+                              "userDefinedNum1" : {
+                                "type" : "string"
+                              },
+                              "itemSegment1" : {
+                                "type" : "string"
+                              },
+                              "userDefinedNum2" : {
+                                "type" : "string"
+                              },
+                              "itemSegment2" : {
+                                "type" : "string"
+                              },
+                              "itemSegment3" : {
+                                "type" : "string"
+                              },
+                              "handlingStatus" : {
+                                "title" : "Handling status code",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Handling status code"
+                              },
+                              "primarySegmant" : {
+                                "type" : "string"
+                              },
+                              "itemPriceGroup" : {
+                                "type" : "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "control" : {
+                      "title" : "Total records",
+                      "type" : "object",
+                      "properties" : {
+                        "total" : {
+                          "$ref" : "#/components/schemas/control-total"
+                        }
+                      },
+                      "description" : "Total number of records in file (array)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "items.get",
+            "openCrossRef" : false,
+            "program" : "MGRR0128"
+          }
+        }
+      }
+    },
+    "/kittingLists/put" : {
+      "post" : {
+        "tags" : [ "Manufacturing order" ],
+        "summary" : "This program is used to receive put operation from R/F device for a manufacturing kitting list",
+        "description" : "This program is used to receive put operation from R/F device for a manufacturing kitting list.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "required" : [ "location", "order", "warehouse" ],
+                "type" : "object",
+                "properties" : {
+                  "warehouse" : {
+                    "title" : "Warehouse",
+                    "maxLength" : 3,
+                    "type" : "string",
+                    "description" : "Warehouse"
+                  },
+                  "order" : {
+                    "title" : "Order number",
+                    "maximum" : 999999999999,
+                    "type" : "integer",
+                    "description" : "Order number",
+                    "format" : "int64"
+                  },
+                  "location" : {
+                    "title" : "Location",
+                    "maxLength" : 11,
+                    "type" : "string",
+                    "description" : "Location"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "kittingListRF.put",
+            "openCrossRef" : true,
+            "program" : "MGRR1007B"
+          }
+        }
+      }
+    },
+    "/kittingLists/confirmations" : {
+      "post" : {
+        "tags" : [ "Manufacturing order" ],
+        "summary" : "This program is used to receive confirm operation from R/F device for a manufacturing kitting list u...",
+        "description" : "This program is used to receive confirm operation from R/F device for a manufacturing kitting list update.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "required" : [ "order", "warehouse" ],
+                "type" : "object",
+                "properties" : {
+                  "warehouse" : {
+                    "title" : "Warehouse",
+                    "maxLength" : 3,
+                    "type" : "string",
+                    "description" : "Warehouse"
+                  },
+                  "order" : {
+                    "title" : "Order number",
+                    "maximum" : 999999999999,
+                    "type" : "integer",
+                    "description" : "Order number",
+                    "format" : "int64"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "kittingListRF.confirm",
+            "openCrossRef" : true,
+            "program" : "MGRR1007C"
+          }
+        }
+      }
+    },
+    "/kittingLists/{order}/drop" : {
+      "get" : {
+        "tags" : [ "Manufacturing order" ],
+        "summary" : "This program is used to retrieve kitting list lines for ready for 'Drop' for R/F device.",
+        "description" : "This program is used to retrieve kitting list lines for ready for 'Drop' for R/F device.",
+        "parameters" : [ {
+          "name" : "warehouse",
+          "in" : "query",
+          "description" : "Warehouse",
+          "required" : true,
+          "schema" : {
+            "title" : "Warehouse",
+            "maxLength" : 3,
+            "type" : "string",
+            "description" : "Warehouse"
+          }
+        }, {
+          "name" : "order",
+          "in" : "path",
+          "description" : "Order number",
+          "required" : true,
+          "schema" : {
+            "title" : "Order number",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Order number",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "displayMode",
+          "in" : "query",
+          "description" : "Display mode",
+          "schema" : {
+            "title" : "Display mode",
+            "maxLength" : 10,
+            "type" : "string",
+            "description" : "Display mode"
+          }
+        }, {
+          "$ref" : "#/components/parameters/control-limit"
+        }, {
+          "$ref" : "#/components/parameters/control-offset"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "linesExists" : {
+                          "title" : "Lines exists",
+                          "type" : "boolean",
+                          "description" : "Lines exists"
+                        },
+                        "items" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "suggestionListLineNumber" : {
+                                "title" : "Suggestion line number",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Suggestion line number",
+                                "format" : "int32"
+                              },
+                              "sequence" : {
+                                "title" : "Sequence",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Sequence",
+                                "format" : "int32"
+                              },
+                              "suggestedItem" : {
+                                "title" : "Item",
+                                "maxLength" : 35,
+                                "type" : "string",
+                                "description" : "Item"
+                              },
+                              "suggestionListSubLineNumber" : {
+                                "title" : "Suggestion line number",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Suggestion line number",
+                                "format" : "int32"
+                              },
+                              "actualLocation" : {
+                                "title" : "Location",
+                                "maxLength" : 11,
+                                "type" : "string",
+                                "description" : "Location"
+                              },
+                              "actualQuantity" : {
+                                "title" : "Actual quantity",
+                                "maximum" : 999999999999.999,
+                                "minimum" : -999999999999.999,
+                                "type" : "number",
+                                "description" : "Actual quantity",
+                                "format" : "double"
+                              },
+                              "suggestedQuantity" : {
+                                "title" : "Suggested quantity",
+                                "maximum" : 999999999999.999,
+                                "minimum" : -999999999999.999,
+                                "type" : "number",
+                                "description" : "Suggested quantity",
+                                "format" : "double"
+                              },
+                              "itemDescription" : {
+                                "title" : "Item description",
+                                "maxLength" : 50,
+                                "type" : "string",
+                                "description" : "Item description"
+                              },
+                              "warehouse" : {
+                                "title" : "Warehouse",
+                                "maxLength" : 3,
+                                "type" : "string",
+                                "description" : "Warehouse"
+                              },
+                              "order" : {
+                                "title" : "Order number",
+                                "maximum" : 999999999999,
+                                "type" : "integer",
+                                "description" : "Order number",
+                                "format" : "int64"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "control" : {
+                      "title" : "Total records",
+                      "type" : "object",
+                      "properties" : {
+                        "total" : {
+                          "$ref" : "#/components/schemas/control-total"
+                        }
+                      },
+                      "description" : "Total number of records in file (array)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "kittingListDrop.get",
+            "openCrossRef" : true,
+            "program" : "MGRR1008C"
+          }
+        }
+      }
+    },
+    "/kittingLists/lines/corrections" : {
+      "post" : {
+        "tags" : [ "Manufacturing order" ],
+        "summary" : "This program is used to correct a picked transaction from R/F device for manufacturing order issue",
+        "description" : "This program is used to correct a picked transaction from R/F device for manufacturing order issue",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "required" : [ "order", "warehouse" ],
+                "type" : "object",
+                "properties" : {
+                  "warehouse" : {
+                    "title" : "Warehouse",
+                    "maxLength" : 3,
+                    "type" : "string",
+                    "description" : "Warehouse"
+                  },
+                  "order" : {
+                    "title" : "Order number",
+                    "maximum" : 999999999999,
+                    "type" : "integer",
+                    "description" : "Order number",
+                    "format" : "int64"
+                  },
+                  "suggestionListLineNumber" : {
+                    "title" : "Suggestion line number",
+                    "maximum" : 99999,
+                    "type" : "integer",
+                    "description" : "Suggestion line number",
+                    "format" : "int32"
+                  },
+                  "suggestionListSubLineNumber" : {
+                    "title" : "Suggestion line number",
+                    "maximum" : 99999,
+                    "type" : "integer",
+                    "description" : "Suggestion line number",
+                    "format" : "int32"
+                  },
+                  "quantity" : {
+                    "title" : "Quantity",
+                    "maximum" : 999999999999.999,
+                    "minimum" : -999999999999.999,
+                    "type" : "number",
+                    "description" : "Quantity",
+                    "format" : "double"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "kittingListLine.correct",
+            "openCrossRef" : true,
+            "program" : "MGRR1008E"
+          }
+        }
+      }
+    },
+    "/kittingLists/{order}/lines/{suggestionListLineNumber}/cancel" : {
+      "put" : {
+        "tags" : [ "Manufacturing order" ],
+        "summary" : "This program is used to receive a cancel operation from R/F device for a manufacturing pick list lin...",
+        "description" : "This program is used to receive a cancel operation from R/F device for a manufacturing pick list line",
+        "parameters" : [ {
+          "name" : "order",
+          "in" : "path",
+          "description" : "Order number",
+          "required" : true,
+          "schema" : {
+            "title" : "Order number",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Order number",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "suggestionListLineNumber",
+          "in" : "path",
+          "description" : "Suggestion line number",
+          "required" : true,
+          "schema" : {
+            "title" : "Suggestion line number",
+            "maximum" : 99999,
+            "type" : "integer",
+            "description" : "Suggestion line number",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "suggestionListSubLineNumber" : {
+                    "title" : "Suggestion line number",
+                    "maximum" : 99999,
+                    "type" : "integer",
+                    "description" : "Suggestion line number",
+                    "format" : "int32"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "kittingListLineCancel.update",
+            "openCrossRef" : true,
+            "program" : "MGRR1007E"
+          }
+        }
+      }
+    },
+    "/kittingLists/{order}/lines/{suggestionListLineNumber}/leaveOpen" : {
+      "put" : {
+        "tags" : [ "Manufacturing order" ],
+        "summary" : "This program is used to receive a Leave open operation from R/F device for a manufacturing order pic...",
+        "description" : "This program is used to receive a Leave open operation from R/F device for a manufacturing order pick list line",
+        "parameters" : [ {
+          "name" : "order",
+          "in" : "path",
+          "description" : "Order number",
+          "required" : true,
+          "schema" : {
+            "title" : "Order number",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Order number",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "suggestionListLineNumber",
+          "in" : "path",
+          "description" : "Suggestion line number",
+          "required" : true,
+          "schema" : {
+            "title" : "Suggestion line number",
+            "maximum" : 99999,
+            "type" : "integer",
+            "description" : "Suggestion line number",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "suggestionListSubLineNumber" : {
+                    "title" : "Suggestion line number",
+                    "maximum" : 99999,
+                    "type" : "integer",
+                    "description" : "Suggestion line number",
+                    "format" : "int32"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "kittingListLineLeaveOpen.update",
+            "openCrossRef" : true,
+            "program" : "MGRR1007D"
+          }
+        }
+      }
+    },
+    "/kittingLists/{order}/lines/texts" : {
+      "get" : {
+        "tags" : [ "Manufacturing order" ],
+        "summary" : "This program is used to load text from manufacturing order kitting list line for R/F device.",
+        "description" : "This program is used to load text from manufacturing order kitting list line for R/F device. Before MGRR1065 call, MGRR1008 program should be called in order to populate data in temp files (actually in RF3312) used for the response.",
+        "parameters" : [ {
+          "name" : "order",
+          "in" : "path",
+          "description" : "Order number",
+          "required" : true,
+          "schema" : {
+            "title" : "Order number",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Order number",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "sequence",
+          "in" : "query",
+          "description" : "Sequence",
+          "schema" : {
+            "title" : "Sequence",
+            "maximum" : 99999,
+            "type" : "integer",
+            "description" : "Sequence",
+            "format" : "int32"
+          }
+        }, {
+          "$ref" : "#/components/parameters/control-limit"
+        }, {
+          "$ref" : "#/components/parameters/control-offset"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "items" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "sequence" : {
+                                "title" : "Sequence",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Sequence",
+                                "format" : "int32"
+                              },
+                              "text" : {
+                                "title" : "Text description",
+                                "maxLength" : 70,
+                                "type" : "string",
+                                "description" : "Text description"
+                              },
+                              "lineNumber" : {
+                                "title" : "Line number",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Line number",
+                                "format" : "int32"
+                              },
+                              "order" : {
+                                "title" : "Order number",
+                                "maximum" : 999999999999,
+                                "type" : "integer",
+                                "description" : "Order number",
+                                "format" : "int64"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "control" : {
+                      "title" : "Total records",
+                      "type" : "object",
+                      "properties" : {
+                        "total" : {
+                          "$ref" : "#/components/schemas/control-total"
+                        }
+                      },
+                      "description" : "Total number of records in file (array)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "kittingListLineText.get",
+            "openCrossRef" : false,
+            "program" : "MGRR1065"
+          }
+        }
+      }
+    },
+    "/kittingLists/{order}/lines/{suggestionListLineNumber}" : {
+      "get" : {
+        "tags" : [ "Manufacturing order" ],
+        "summary" : "This program is used to load information for picked line for a smanufacturing order to a R/F device.",
+        "description" : "This program is used to load information for picked line for a smanufacturing order to a R/F device.",
+        "parameters" : [ {
+          "name" : "order",
+          "in" : "path",
+          "description" : "Order number",
+          "required" : true,
+          "schema" : {
+            "title" : "Order number",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Order number",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "suggestionListLineNumber",
+          "in" : "path",
+          "description" : "Suggestion line number",
+          "required" : true,
+          "schema" : {
+            "title" : "Suggestion line number",
+            "maximum" : 99999,
+            "type" : "integer",
+            "description" : "Suggestion line number",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "warehouse",
+          "in" : "query",
+          "description" : "Warehouse",
+          "required" : true,
+          "schema" : {
+            "title" : "Warehouse",
+            "maxLength" : 3,
+            "type" : "string",
+            "description" : "Warehouse"
+          }
+        }, {
+          "name" : "suggestionListSubLineNumber",
+          "in" : "query",
+          "description" : "Suggestion line number",
+          "required" : true,
+          "schema" : {
+            "title" : "Suggestion line number",
+            "maximum" : 99999,
+            "type" : "integer",
+            "description" : "Suggestion line number",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "suggestionListLineNumber" : {
+                          "title" : "Suggestion line number",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Suggestion line number",
+                          "format" : "int32"
+                        },
+                        "palletTypeExist" : {
+                          "title" : "Pallet exist",
+                          "type" : "boolean",
+                          "description" : "Pallet exist"
+                        },
+                        "item" : {
+                          "title" : "Item",
+                          "maxLength" : 35,
+                          "type" : "string",
+                          "description" : "Item"
+                        },
+                        "locationAlias" : {
+                          "title" : "Location",
+                          "maxLength" : 11,
+                          "type" : "string",
+                          "description" : "Staging location"
+                        },
+                        "serialNumberTrackingCode" : {
+                          "title" : "Serial number tracking",
+                          "type" : "boolean",
+                          "description" : "Serial number tracking"
+                        },
+                        "batchCode" : {
+                          "title" : "Batch",
+                          "type" : "boolean",
+                          "description" : "Batch"
+                        },
+                        "palletNumber" : {
+                          "title" : "Pallet number",
+                          "maxLength" : 18,
+                          "type" : "string",
+                          "description" : "Pallet number"
+                        },
+                        "batch" : {
+                          "title" : "Batch",
+                          "maxLength" : 13,
+                          "type" : "string",
+                          "description" : "Batch"
+                        },
+                        "warehouse" : {
+                          "title" : "Warehouse",
+                          "maxLength" : 3,
+                          "type" : "string",
+                          "description" : "Warehouse"
+                        },
+                        "serialNo" : {
+                          "title" : "Serial number",
+                          "maxLength" : 20,
+                          "type" : "string",
+                          "description" : "Serial number"
+                        },
+                        "sequence" : {
+                          "title" : "Sequence",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Sequence",
+                          "format" : "int32"
+                        },
+                        "unit" : {
+                          "title" : "Unit",
+                          "maxLength" : 5,
+                          "type" : "string",
+                          "description" : "Unit"
+                        },
+                        "suggestionListSubLineNumber" : {
+                          "title" : "Suggestion line number",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Suggestion line number",
+                          "format" : "int32"
+                        },
+                        "actualQuantity" : {
+                          "title" : "Quantity",
+                          "maximum" : 999999999999.999,
+                          "minimum" : -999999999999.999,
+                          "type" : "number",
+                          "description" : "Quantity",
+                          "format" : "double"
+                        },
+                        "order" : {
+                          "title" : "Order number",
+                          "maximum" : 999999999999,
+                          "type" : "integer",
+                          "description" : "Order number",
+                          "format" : "int64"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "kittingListLine.get",
+            "openCrossRef" : true,
+            "program" : "MGRR1008D"
+          }
+        }
+      }
+    },
+    "/kittingLists/{order}/nextLine}" : {
+      "get" : {
+        "tags" : [ "Manufacturing order" ],
+        "summary" : "This program is used to load information from manufacturing order pick list for R/F device, next lin...",
+        "description" : "This program is used to load information from manufacturing order pick list for R/F device, next line to be handled is retrieved from temporary file",
+        "parameters" : [ {
+          "name" : "warehouse",
+          "in" : "query",
+          "description" : "Warehouse",
+          "required" : true,
+          "schema" : {
+            "title" : "Warehouse",
+            "maxLength" : 3,
+            "type" : "string",
+            "description" : "Warehouse"
+          }
+        }, {
+          "name" : "order",
+          "in" : "path",
+          "description" : "Order number",
+          "required" : true,
+          "schema" : {
+            "title" : "Order number",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Order number",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "suggLineNumberSel",
+          "in" : "query",
+          "description" : "Suggestion line number",
+          "schema" : {
+            "title" : "Suggestion line number",
+            "maximum" : 99999,
+            "type" : "integer",
+            "description" : "Suggestion line number",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "suggSubLineSel",
+          "in" : "query",
+          "description" : "Suggestion line number",
+          "schema" : {
+            "title" : "Suggestion line number",
+            "maximum" : 99999,
+            "type" : "integer",
+            "description" : "Suggestion line number",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "sequenceSel",
+          "in" : "query",
+          "description" : "Sequence",
+          "schema" : {
+            "title" : "Sequence",
+            "maximum" : 99999,
+            "type" : "integer",
+            "description" : "Sequence",
+            "format" : "int32"
+          }
+        }, {
+          "$ref" : "#/components/parameters/control-limit"
+        }, {
+          "$ref" : "#/components/parameters/control-offset"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "remainingQuantity" : {
+                          "title" : "Remaining quantity",
+                          "maximum" : 999999999999.999,
+                          "minimum" : -999999999999.999,
+                          "type" : "number",
+                          "description" : "Remaining quantity",
+                          "format" : "double"
+                        },
+                        "suggestedItem" : {
+                          "title" : "Item",
+                          "maxLength" : 35,
+                          "type" : "string",
+                          "description" : "Item"
+                        },
+                        "suggestedLocation" : {
+                          "title" : "Locattion",
+                          "maxLength" : 11,
+                          "type" : "string",
+                          "description" : "Suggested location"
+                        },
+                        "serialNumberTrackingCode" : {
+                          "title" : "Serial number tracking",
+                          "type" : "boolean",
+                          "description" : "Serial number tracking"
+                        },
+                        "suggestedPalletNumber" : {
+                          "title" : "Suggested pallet number",
+                          "maxLength" : 18,
+                          "type" : "string",
+                          "description" : "Suggested pallet number"
+                        },
+                        "sellByDateCode" : {
+                          "title" : "Sell by date",
+                          "type" : "boolean",
+                          "description" : "Sell by date"
+                        },
+                        "sellByDate" : {
+                          "title" : "Sell by date",
+                          "maxLength" : 10,
+                          "type" : "string",
+                          "description" : "Sell by date",
+                          "format" : "date"
+                        },
+                        "actualQuantity" : {
+                          "title" : "Actual quantity",
+                          "maximum" : 999999999999.999,
+                          "minimum" : -999999999999.999,
+                          "type" : "number",
+                          "description" : "Actual quantity",
+                          "format" : "double"
+                        },
+                        "suggestedQuantity" : {
+                          "title" : "Suggested quantity",
+                          "maximum" : 999999999999.999,
+                          "minimum" : -999999999999.999,
+                          "type" : "number",
+                          "description" : "Suggested quantity",
+                          "format" : "double"
+                        },
+                        "itemDescription" : {
+                          "title" : "Item description",
+                          "maxLength" : 50,
+                          "type" : "string",
+                          "description" : "Item description"
+                        },
+                        "suggestedPalletType" : {
+                          "title" : "Suggested pallet type",
+                          "maxLength" : 10,
+                          "type" : "string",
+                          "description" : "Suggested pallet type"
+                        },
+                        "suggestedBatch" : {
+                          "title" : "Suggested batch",
+                          "maxLength" : 13,
+                          "type" : "string",
+                          "description" : "Suggested batch"
+                        },
+                        "order" : {
+                          "title" : "Order number",
+                          "maximum" : 999999999999,
+                          "type" : "integer",
+                          "description" : "Order number",
+                          "format" : "int64"
+                        },
+                        "suggestionListLineNumber" : {
+                          "title" : "Suggestion line number",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Suggestion line number",
+                          "format" : "int32"
+                        },
+                        "useByDate" : {
+                          "title" : "Use by date",
+                          "maxLength" : 10,
+                          "type" : "string",
+                          "description" : "Use by date",
+                          "format" : "date"
+                        },
+                        "palletTypeExist" : {
+                          "title" : "Pallet exist",
+                          "type" : "boolean",
+                          "description" : "Pallet exist"
+                        },
+                        "batchCode" : {
+                          "title" : "Batch",
+                          "type" : "boolean",
+                          "description" : "Batch"
+                        },
+                        "checkEmptyLocation" : {
+                          "title" : "Check empty location",
+                          "type" : "boolean",
+                          "description" : "Check empty location"
+                        },
+                        "linesExists" : {
+                          "title" : "Lines exists",
+                          "type" : "boolean",
+                          "description" : "Lines exists"
+                        },
+                        "warehouse" : {
+                          "title" : "Warehouse",
+                          "maxLength" : 3,
+                          "type" : "string",
+                          "description" : "Warehouse"
+                        },
+                        "stagingLocation" : {
+                          "title" : "Staging location",
+                          "maxLength" : 11,
+                          "type" : "string",
+                          "description" : "Staging location"
+                        },
+                        "sequence" : {
+                          "title" : "Sequence",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Sequence",
+                          "format" : "int32"
+                        },
+                        "unit" : {
+                          "title" : "Unit",
+                          "maxLength" : 5,
+                          "type" : "string",
+                          "description" : "Unit"
+                        },
+                        "suggestionListSubLineNumber" : {
+                          "title" : "Suggestion line number",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Suggestion line number",
+                          "format" : "int32"
+                        },
+                        "items" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "suggestionListLineNumber" : {
+                                "title" : "Suggestion line number",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Suggestion line number",
+                                "format" : "int32"
+                              },
+                              "sequence" : {
+                                "title" : "Sequence",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Sequence",
+                                "format" : "int32"
+                              },
+                              "suggestedItem" : {
+                                "title" : "Item",
+                                "maxLength" : 35,
+                                "type" : "string",
+                                "description" : "Item"
+                              },
+                              "suggestedLocation" : {
+                                "title" : "Location",
+                                "maxLength" : 11,
+                                "type" : "string",
+                                "description" : "Suggested location"
+                              },
+                              "suggestionListSubLineNumber" : {
+                                "title" : "Suggestion line number",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Suggestion line number",
+                                "format" : "int32"
+                              },
+                              "suggestedQuantity" : {
+                                "title" : "Suggested quantity",
+                                "maximum" : 999999999999.999,
+                                "minimum" : -999999999999.999,
+                                "type" : "number",
+                                "description" : "Suggested quantity",
+                                "format" : "double"
+                              },
+                              "itemDescription" : {
+                                "title" : "Item description",
+                                "maxLength" : 50,
+                                "type" : "string",
+                                "description" : "Item description"
+                              },
+                              "warehouse" : {
+                                "title" : "Warehouse",
+                                "maxLength" : 3,
+                                "type" : "string",
+                                "description" : "Warehouse"
+                              },
+                              "suggestedPalletNumber" : {
+                                "title" : "Suggested pallet number",
+                                "maxLength" : 18,
+                                "type" : "string",
+                                "description" : "Suggested pallet number"
+                              },
+                              "order" : {
+                                "title" : "Order number",
+                                "maximum" : 999999999999,
+                                "type" : "integer",
+                                "description" : "Order number",
+                                "format" : "int64"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "control" : {
+                      "title" : "Total records",
+                      "type" : "object",
+                      "properties" : {
+                        "total" : {
+                          "$ref" : "#/components/schemas/control-total"
+                        }
+                      },
+                      "description" : "Total number of records in file (array)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "kittingListNextLineRF.get",
+            "openCrossRef" : true,
+            "program" : "MGRR1008A"
+          }
+        }
+      }
+    },
+    "/kittingLists/pick" : {
+      "post" : {
+        "tags" : [ "Manufacturing order" ],
+        "summary" : "This program is used to receive pick operation from R/F device for a manufacturing kitting list.",
+        "description" : "This program is used to receive pick operation from R/F device for a manufacturing kitting list.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "required" : [ "location", "order", "warehouse" ],
+                "type" : "object",
+                "properties" : {
+                  "warehouse" : {
+                    "title" : "Warehouse",
+                    "maxLength" : 3,
+                    "type" : "string",
+                    "description" : "Warehouse"
+                  },
+                  "order" : {
+                    "title" : "Order number",
+                    "maximum" : 999999999999,
+                    "type" : "integer",
+                    "description" : "Order number",
+                    "format" : "int64"
+                  },
+                  "suggestionListLineNumber" : {
+                    "title" : "Suggestion line number",
+                    "maximum" : 99999,
+                    "type" : "integer",
+                    "description" : "Suggestion line number",
+                    "format" : "int32"
+                  },
+                  "suggestionListSubLineNumber" : {
+                    "title" : "Suggestion line number",
+                    "maximum" : 99999,
+                    "type" : "integer",
+                    "description" : "Suggestion line number",
+                    "format" : "int32"
+                  },
+                  "item" : {
+                    "title" : "Item",
+                    "maxLength" : 35,
+                    "type" : "string",
+                    "description" : "Item"
+                  },
+                  "quantity" : {
+                    "title" : "Quantity",
+                    "maximum" : 999999999999.999,
+                    "minimum" : -999999999999.999,
+                    "type" : "number",
+                    "description" : "Quantity",
+                    "format" : "double"
+                  },
+                  "batch" : {
+                    "title" : "Batch",
+                    "maxLength" : 13,
+                    "type" : "string",
+                    "description" : "Batch"
+                  },
+                  "serialNo" : {
+                    "title" : "Serial number",
+                    "maxLength" : 20,
+                    "type" : "string",
+                    "description" : "Serial number"
+                  },
+                  "palletNumber" : {
+                    "title" : "Pallet number",
+                    "maxLength" : 18,
+                    "type" : "string",
+                    "description" : "Pallet number"
+                  },
+                  "location" : {
+                    "title" : "Location",
+                    "maxLength" : 11,
+                    "type" : "string",
+                    "description" : "Location"
+                  },
+                  "emptyLocation" : {
+                    "title" : "Empty location",
+                    "type" : "boolean",
+                    "description" : "Empty location"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "kittingListRF.pick",
+            "openCrossRef" : true,
+            "program" : "MGRR1007A"
+          }
+        }
+      }
+    },
+    "/kittingLists/{order}/pickedLines" : {
+      "get" : {
+        "tags" : [ "Manufacturing order" ],
+        "summary" : "This program is used to load information for picked lined for a smanufacturing order to a R/F device...",
+        "description" : "This program is used to load information for picked lined for a smanufacturing order to a R/F device, the lines retrieved from temporary file hold maintained code = 2",
+        "parameters" : [ {
+          "name" : "warehouse",
+          "in" : "query",
+          "description" : "Warehouse",
+          "required" : true,
+          "schema" : {
+            "title" : "Warehouse",
+            "maxLength" : 3,
+            "type" : "string",
+            "description" : "Warehouse"
+          }
+        }, {
+          "name" : "order",
+          "in" : "path",
+          "description" : "Order number",
+          "required" : true,
+          "schema" : {
+            "title" : "Order number",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Order number",
+            "format" : "int64"
+          }
+        }, {
+          "$ref" : "#/components/parameters/control-limit"
+        }, {
+          "$ref" : "#/components/parameters/control-offset"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "suggestionListLineNumber" : {
+                          "title" : "Suggestion line number",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Suggestion line number",
+                          "format" : "int32"
+                        },
+                        "palletTypeExist" : {
+                          "title" : "Pallet exist",
+                          "type" : "boolean",
+                          "description" : "Pallet exist"
+                        },
+                        "item" : {
+                          "title" : "Item",
+                          "maxLength" : 35,
+                          "type" : "string",
+                          "description" : "Item"
+                        },
+                        "locationAlias" : {
+                          "title" : "Location",
+                          "maxLength" : 11,
+                          "type" : "string",
+                          "description" : "Staging location"
+                        },
+                        "serialNumberTrackingCode" : {
+                          "title" : "Serial number tracking",
+                          "type" : "boolean",
+                          "description" : "Serial number tracking"
+                        },
+                        "batchCode" : {
+                          "title" : "Batch",
+                          "type" : "boolean",
+                          "description" : "Batch"
+                        },
+                        "palletNumber" : {
+                          "title" : "Pallet number",
+                          "maxLength" : 18,
+                          "type" : "string",
+                          "description" : "Pallet number"
+                        },
+                        "batch" : {
+                          "title" : "Batch",
+                          "maxLength" : 13,
+                          "type" : "string",
+                          "description" : "Batch"
+                        },
+                        "warehouse" : {
+                          "title" : "Warehouse",
+                          "maxLength" : 3,
+                          "type" : "string",
+                          "description" : "Warehouse"
+                        },
+                        "serialNo" : {
+                          "title" : "Serial number",
+                          "maxLength" : 20,
+                          "type" : "string",
+                          "description" : "Serial number"
+                        },
+                        "sequence" : {
+                          "title" : "Sequence",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Sequence",
+                          "format" : "int32"
+                        },
+                        "unit" : {
+                          "title" : "Unit",
+                          "maxLength" : 5,
+                          "type" : "string",
+                          "description" : "Unit"
+                        },
+                        "suggestionListSubLineNumber" : {
+                          "title" : "Suggestion line number",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Suggestion line number",
+                          "format" : "int32"
+                        },
+                        "actualQuantity" : {
+                          "title" : "Quantity",
+                          "maximum" : 999999999999.999,
+                          "minimum" : -999999999999.999,
+                          "type" : "number",
+                          "description" : "Quantity",
+                          "format" : "double"
+                        },
+                        "items" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "remainingQuantity" : {
+                                "title" : "Remaining quantity",
+                                "maximum" : 999999999999.999,
+                                "minimum" : -999999999999.999,
+                                "type" : "number",
+                                "description" : "Remaining quantity",
+                                "format" : "double"
+                              },
+                              "suggestedLocation" : {
+                                "title" : "Suggested Location",
+                                "maxLength" : 11,
+                                "type" : "string",
+                                "description" : "Suggested location"
+                              },
+                              "serialNumberTrackingCode" : {
+                                "title" : "Serial number tracking",
+                                "type" : "boolean",
+                                "description" : "Serial number tracking"
+                              },
+                              "suggestedPalletNumber" : {
+                                "title" : "Suggested pallet number",
+                                "maxLength" : 18,
+                                "type" : "string",
+                                "description" : "Suggested pallet number"
+                              },
+                              "sellByDateCode" : {
+                                "title" : "Sell by date",
+                                "type" : "boolean",
+                                "description" : "Sell by date"
+                              },
+                              "sellByDate" : {
+                                "title" : "Sell by date",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Sell by date",
+                                "format" : "date"
+                              },
+                              "actualQuantity" : {
+                                "title" : "Quantity",
+                                "maximum" : 999999999999.999,
+                                "minimum" : -999999999999.999,
+                                "type" : "number",
+                                "description" : "Actual quantity",
+                                "format" : "double"
+                              },
+                              "suggestedQuantity" : {
+                                "title" : "Suggested quantity",
+                                "maximum" : 999999999999.999,
+                                "minimum" : -999999999999.999,
+                                "type" : "number",
+                                "description" : "Suggested quantity",
+                                "format" : "double"
+                              },
+                              "itemDescription" : {
+                                "title" : "Item description",
+                                "maxLength" : 50,
+                                "type" : "string",
+                                "description" : "Item description"
+                              },
+                              "suggestedPalletType" : {
+                                "title" : "Suggested pallet type",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Suggested pallet type"
+                              },
+                              "suggestedBatch" : {
+                                "title" : "Suggested batch",
+                                "maxLength" : 13,
+                                "type" : "string",
+                                "description" : "Suggested batch"
+                              },
+                              "order" : {
+                                "title" : "Order number",
+                                "maximum" : 999999999999,
+                                "type" : "integer",
+                                "description" : "Order number",
+                                "format" : "int64"
+                              },
+                              "suggestionListLineNumber" : {
+                                "title" : "Suggestion line number",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Suggestion line number",
+                                "format" : "int32"
+                              },
+                              "useByDate" : {
+                                "title" : "Use by date",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Use by date",
+                                "format" : "date"
+                              },
+                              "item" : {
+                                "title" : "Item",
+                                "maxLength" : 35,
+                                "type" : "string",
+                                "description" : "Item"
+                              },
+                              "batchCode" : {
+                                "title" : "Batch",
+                                "type" : "boolean",
+                                "description" : "Batch"
+                              },
+                              "batch" : {
+                                "title" : "Batch",
+                                "maxLength" : 13,
+                                "type" : "string",
+                                "description" : "Batch"
+                              },
+                              "palletNumber" : {
+                                "title" : "Pallet number",
+                                "maxLength" : 18,
+                                "type" : "string",
+                                "description" : "Pallet number"
+                              },
+                              "checkEmptyLocation" : {
+                                "title" : "Check empty location",
+                                "type" : "boolean",
+                                "description" : "Check empty location"
+                              },
+                              "warehouse" : {
+                                "title" : "Warehouse",
+                                "maxLength" : 3,
+                                "type" : "string",
+                                "description" : "Warehouse"
+                              },
+                              "stagingLocation" : {
+                                "title" : "Location",
+                                "maxLength" : 11,
+                                "type" : "string",
+                                "description" : "Staging location"
+                              },
+                              "serialNo" : {
+                                "title" : "Serial number",
+                                "maxLength" : 20,
+                                "type" : "string",
+                                "description" : "Serial number"
+                              },
+                              "sequence" : {
+                                "title" : "Sequence",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Sequence",
+                                "format" : "int32"
+                              },
+                              "unit" : {
+                                "title" : "Unit",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Unit"
+                              },
+                              "suggestionListSubLineNumber" : {
+                                "title" : "Suggestion line number",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Suggestion line number",
+                                "format" : "int32"
+                              }
+                            }
+                          }
+                        },
+                        "order" : {
+                          "title" : "Order number",
+                          "maximum" : 999999999999,
+                          "type" : "integer",
+                          "description" : "Order number",
+                          "format" : "int64"
+                        }
+                      }
+                    },
+                    "control" : {
+                      "title" : "Total records",
+                      "type" : "object",
+                      "properties" : {
+                        "total" : {
+                          "$ref" : "#/components/schemas/control-total"
+                        }
+                      },
+                      "description" : "Total number of records in file (array)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "kittingListPickedLinesRF.get",
+            "openCrossRef" : true,
+            "program" : "MGRR1008B"
+          }
+        }
+      }
+    },
+    "/kittingLists/{order}" : {
+      "get" : {
+        "tags" : [ "Manufacturing order" ],
+        "summary" : "This program is used to load information from manufacturing order kitting list for R/F device.",
+        "description" : "This program is used to load information from manufacturing order kitting list for R/F device.",
+        "parameters" : [ {
+          "name" : "warehouse",
+          "in" : "query",
+          "description" : "Warehouse",
+          "required" : true,
+          "schema" : {
+            "title" : "Warehouse",
+            "maxLength" : 3,
+            "type" : "string",
+            "description" : "Warehouse"
+          }
+        }, {
+          "name" : "order",
+          "in" : "path",
+          "description" : "Order number",
+          "required" : true,
+          "schema" : {
+            "title" : "Order number",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Order number",
+            "format" : "int64"
+          }
+        }, {
+          "$ref" : "#/components/parameters/control-limit"
+        }, {
+          "$ref" : "#/components/parameters/control-offset"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "physicalWarehouse" : {
+                          "title" : "Physical warehouse",
+                          "maxLength" : 3,
+                          "type" : "string",
+                          "description" : "Physical warehouse"
+                        },
+                        "printVersion" : {
+                          "title" : "Print version",
+                          "maximum" : 99,
+                          "type" : "integer",
+                          "description" : "Print version",
+                          "format" : "int32"
+                        },
+                        "warehouse" : {
+                          "title" : "Warehouse",
+                          "maxLength" : 3,
+                          "type" : "string",
+                          "description" : "Warehouse"
+                        },
+                        "numberOfPickingLines" : {
+                          "title" : "Number of lines",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Number of lines",
+                          "format" : "int32"
+                        },
+                        "items" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "suggestionListLineNumber" : {
+                                "title" : "Suggestion line number",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Suggestion line number",
+                                "format" : "int32"
+                              },
+                              "useByDate" : {
+                                "title" : "Use by date",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Use by date",
+                                "format" : "date"
+                              },
+                              "item" : {
+                                "title" : "Item",
+                                "maxLength" : 35,
+                                "type" : "string",
+                                "description" : "Item"
+                              },
+                              "suggestedLocation" : {
+                                "title" : "Suggested location",
+                                "maxLength" : 11,
+                                "type" : "string",
+                                "description" : "Suggested location"
+                              },
+                              "serialNumberTrackingCode" : {
+                                "title" : "Serial number tracking code",
+                                "type" : "boolean",
+                                "description" : "Serial number tracking code"
+                              },
+                              "batchCode" : {
+                                "title" : "Batch",
+                                "type" : "boolean",
+                                "description" : "Batch"
+                              },
+                              "operationLineNumber" : {
+                                "title" : "Operation line number",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Operation line number",
+                                "format" : "int32"
+                              },
+                              "checkEmptyLocation" : {
+                                "title" : "Check empty location",
+                                "type" : "boolean",
+                                "description" : "Check empty location"
+                              },
+                              "warehouse" : {
+                                "title" : "Warehouse",
+                                "maxLength" : 3,
+                                "type" : "string",
+                                "description" : "Warehouse"
+                              },
+                              "suggestedPalletNumber" : {
+                                "title" : "Suggested pallet number",
+                                "maxLength" : 18,
+                                "type" : "string",
+                                "description" : "Suggested pallet number"
+                              },
+                              "stagingLocation" : {
+                                "title" : "Staging location",
+                                "maxLength" : 11,
+                                "type" : "string",
+                                "description" : "Staging location"
+                              },
+                              "sequence" : {
+                                "title" : "Sequence",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Sequence",
+                                "format" : "int32"
+                              },
+                              "sellByDateCode" : {
+                                "title" : "Sell by date code",
+                                "type" : "boolean",
+                                "description" : "Sell by date code"
+                              },
+                              "sellByDate" : {
+                                "title" : "Sell by date",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Sell by date",
+                                "format" : "date"
+                              },
+                              "unit" : {
+                                "title" : "Unit",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Unit"
+                              },
+                              "physicalWarehouse" : {
+                                "title" : "Physical warehouse",
+                                "maxLength" : 3,
+                                "type" : "string",
+                                "description" : "Physical warehouse"
+                              },
+                              "suggestionListSubLineNumber" : {
+                                "title" : "Suggestion line number",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Suggestion line number",
+                                "format" : "int32"
+                              },
+                              "textExists" : {
+                                "title" : "Text exists",
+                                "type" : "boolean",
+                                "description" : "Text exists"
+                              },
+                              "suggestedQuantity" : {
+                                "title" : "Suggested quantity",
+                                "maximum" : 999999999999.999,
+                                "minimum" : -999999999999.999,
+                                "type" : "number",
+                                "description" : "Suggested quantity",
+                                "format" : "double"
+                              },
+                              "itemDescription" : {
+                                "title" : "Item description",
+                                "maxLength" : 50,
+                                "type" : "string",
+                                "description" : "Item description"
+                              },
+                              "suggestedPalletType" : {
+                                "title" : "Suggested pallet type",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Suggested pallet type"
+                              },
+                              "suggestedBatch" : {
+                                "title" : "Suggested batch",
+                                "maxLength" : 13,
+                                "type" : "string",
+                                "description" : "Suggested batch"
+                              },
+                              "order" : {
+                                "title" : "Order number",
+                                "maximum" : 999999999999,
+                                "type" : "integer",
+                                "description" : "Order number",
+                                "format" : "int64"
+                              }
+                            }
+                          }
+                        },
+                        "order" : {
+                          "title" : "Order number",
+                          "maximum" : 999999999999,
+                          "type" : "integer",
+                          "description" : "Order number",
+                          "format" : "int64"
+                        }
+                      }
+                    },
+                    "control" : {
+                      "title" : "Total records",
+                      "type" : "object",
+                      "properties" : {
+                        "total" : {
+                          "$ref" : "#/components/schemas/control-total"
+                        }
+                      },
+                      "description" : "Total number of records in file (array)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "kittingListRF.get",
+            "openCrossRef" : false,
+            "program" : "MGRR1008"
+          }
+        }
+      }
+    },
+    "/languageIdentifiers" : {
+      "get" : {
+        "tags" : [ "Language" ],
+        "summary" : "Program to get language identifiers list",
+        "description" : "Program to get language identifiers list",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "items" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "description" : {
+                                "title" : "Description",
+                                "maxLength" : 40,
+                                "type" : "string",
+                                "description" : "Description"
+                              },
+                              "languageIdentifier" : {
+                                "title" : "Language identifier",
+                                "maxLength" : 3,
+                                "type" : "string",
+                                "description" : "Language identifier"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "languageIdentifiers.get",
+            "openCrossRef" : false,
+            "program" : "MGRR0675"
+          }
+        }
+      }
+    },
+    "/languages" : {
+      "get" : {
+        "tags" : [ "Language" ],
+        "summary" : "Program to retrieve languages",
+        "description" : "Program to retrieve languages",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "items" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "translationFileMember" : {
+                                "title" : "Translation file member",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Translation file member"
+                              },
+                              "dateSeparator" : {
+                                "title" : "Date separator",
+                                "maxLength" : 1,
+                                "type" : "string",
+                                "description" : "Date separator"
+                              },
+                              "authorityErrorPrintString" : {
+                                "title" : "Authority error print string",
+                                "maxLength" : 80,
+                                "type" : "string",
+                                "description" : "Authority error print string"
+                              },
+                              "dictionaryLibrary" : {
+                                "title" : "Dictionary library",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Dictionary library"
+                              },
+                              "description" : {
+                                "title" : "Description",
+                                "maxLength" : 30,
+                                "type" : "string",
+                                "description" : "Description"
+                              },
+                              "language" : {
+                                "title" : "Language",
+                                "maxLength" : 3,
+                                "type" : "string",
+                                "description" : "Language"
+                              },
+                              "codedCharacterSetId" : {
+                                "title" : "Coded character set ID",
+                                "maximum" : 9999999999,
+                                "type" : "integer",
+                                "description" : "Coded character set ID",
+                                "format" : "int64"
+                              },
+                              "characterIdentifierControl" : {
+                                "title" : "Character identifier control",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Character identifier control"
+                              },
+                              "languageIdentifier" : {
+                                "title" : "Language identifier",
+                                "maxLength" : 3,
+                                "type" : "string",
+                                "description" : "Language identifier"
+                              },
+                              "endOfListString" : {
+                                "title" : "End of list string",
+                                "maxLength" : 80,
+                                "type" : "string",
+                                "description" : "End of list string"
+                              },
+                              "dictionary" : {
+                                "title" : "Dictionary",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Dictionary"
+                              },
+                              "dateFormat2" : {
+                                "title" : "Date format 2",
+                                "maxLength" : 1,
+                                "type" : "string",
+                                "description" : "Date format 2"
+                              },
+                              "ISOLanguageCode" : {
+                                "title" : "ISO language code",
+                                "maxLength" : 3,
+                                "type" : "string",
+                                "description" : "ISO language code"
+                              },
+                              "decimalFormat" : {
+                                "title" : "Decimal format",
+                                "maxLength" : 1,
+                                "type" : "string",
+                                "description" : "Decimal format"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "languages.get",
+            "openCrossRef" : true,
+            "program" : "MGRR0588"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Language" ],
+        "summary" : "Program to add language",
+        "description" : "Program to add language",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "required" : [ "authorityErrorPrintString", "characterIdentifierControl", "codedCharacterSetId", "dateFormat2", "description", "endOfListString", "language", "languageIdentifier" ],
+                "type" : "object",
+                "properties" : {
+                  "language" : {
+                    "title" : "Language",
+                    "maxLength" : 3,
+                    "type" : "string",
+                    "description" : "Language"
+                  },
+                  "description" : {
+                    "title" : "Description",
+                    "maxLength" : 30,
+                    "type" : "string",
+                    "description" : "Description"
+                  },
+                  "dateFormat2" : {
+                    "title" : "Date format 2",
+                    "maxLength" : 1,
+                    "type" : "string",
+                    "description" : "Date format 2"
+                  },
+                  "codedCharacterSetId" : {
+                    "title" : "Coded character set ID",
+                    "maxLength" : 10,
+                    "type" : "string",
+                    "description" : "Coded character set ID"
+                  },
+                  "languageIdentifier" : {
+                    "title" : "Language identifier",
+                    "maxLength" : 3,
+                    "type" : "string",
+                    "description" : "Language identifier"
+                  },
+                  "characterIdentifierControl" : {
+                    "title" : "Character identifier control",
+                    "maxLength" : 10,
+                    "type" : "string",
+                    "description" : "Character identifier control"
+                  },
+                  "endOfListString" : {
+                    "title" : "End of list string",
+                    "maxLength" : 80,
+                    "type" : "string",
+                    "description" : "End of list string"
+                  },
+                  "authorityErrorPrintString" : {
+                    "title" : "Authority error print string",
+                    "maxLength" : 80,
+                    "type" : "string",
+                    "description" : "Authority error print string"
+                  },
+                  "ISOLanguageCode" : {
+                    "title" : "ISO language code",
+                    "maxLength" : 3,
+                    "type" : "string",
+                    "description" : "ISO language code"
+                  },
+                  "dateSeparator" : {
+                    "title" : "Date separator",
+                    "maxLength" : 1,
+                    "type" : "string",
+                    "description" : "Date separator"
+                  },
+                  "decimalFormat" : {
+                    "title" : "Decimal format",
+                    "maxLength" : 1,
+                    "type" : "string",
+                    "description" : "Decimal format"
+                  },
+                  "translationFileMember" : {
+                    "title" : "Translation file member",
+                    "maxLength" : 10,
+                    "type" : "string",
+                    "description" : "Translation file member"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "language" : {
+                          "title" : "Language",
+                          "maxLength" : 3,
+                          "type" : "string",
+                          "description" : "Language"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "language.add",
+            "openCrossRef" : true,
+            "program" : "MGRR0585"
+          }
+        }
+      }
+    },
+    "/languages/{language}" : {
+      "get" : {
+        "tags" : [ "Language" ],
+        "summary" : "Program to retrieve language related data",
+        "description" : "Program to retrieve language related data",
+        "parameters" : [ {
+          "name" : "language",
+          "in" : "path",
+          "description" : "Language",
+          "required" : true,
+          "schema" : {
+            "title" : "Language",
+            "maxLength" : 3,
+            "type" : "string",
+            "description" : "Language"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "translationFileMember" : {
+                          "title" : "Translation file member",
+                          "maxLength" : 10,
+                          "type" : "string",
+                          "description" : "Translation file member"
+                        },
+                        "dateSeparator" : {
+                          "title" : "Date separator",
+                          "maxLength" : 1,
+                          "type" : "string",
+                          "description" : "Date separator"
+                        },
+                        "authorityErrorPrintString" : {
+                          "title" : "Authority error print string",
+                          "maxLength" : 80,
+                          "type" : "string",
+                          "description" : "Authority error print string"
+                        },
+                        "dictionaryLibrary" : {
+                          "title" : "Dictionary library",
+                          "maxLength" : 10,
+                          "type" : "string",
+                          "description" : "Dictionary library"
+                        },
+                        "description" : {
+                          "title" : "Description",
+                          "maxLength" : 30,
+                          "type" : "string",
+                          "description" : "Description"
+                        },
+                        "language" : {
+                          "title" : "Language",
+                          "maxLength" : 3,
+                          "type" : "string",
+                          "description" : "Language"
+                        },
+                        "codedCharacterSetId" : {
+                          "title" : "Coded character set ID",
+                          "maximum" : 9999999999,
+                          "type" : "integer",
+                          "description" : "Coded character set ID",
+                          "format" : "int64"
+                        },
+                        "characterIdentifierControl" : {
+                          "title" : "Character identifier control",
+                          "maxLength" : 10,
+                          "type" : "string",
+                          "description" : "Character identifier control"
+                        },
+                        "languageIdentifier" : {
+                          "title" : "Language identifier",
+                          "maxLength" : 3,
+                          "type" : "string",
+                          "description" : "Language identifier"
+                        },
+                        "endOfListString" : {
+                          "title" : "End of list string",
+                          "maxLength" : 80,
+                          "type" : "string",
+                          "description" : "End of list string"
+                        },
+                        "dictionary" : {
+                          "title" : "Dictionary",
+                          "maxLength" : 10,
+                          "type" : "string",
+                          "description" : "Dictionary"
+                        },
+                        "dateFormat2" : {
+                          "title" : "Date format 2",
+                          "maxLength" : 1,
+                          "type" : "string",
+                          "description" : "Date format 2"
+                        },
+                        "ISOLanguageCode" : {
+                          "title" : "ISO language code",
+                          "maxLength" : 3,
+                          "type" : "string",
+                          "description" : "ISO language code"
+                        },
+                        "decimalFormat" : {
+                          "title" : "Decimal format",
+                          "maxLength" : 1,
+                          "type" : "string",
+                          "description" : "Decimal format"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "language.get",
+            "openCrossRef" : true,
+            "program" : "MGRR0584"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Language" ],
+        "summary" : "Program to update language",
+        "description" : "Program to update language",
+        "parameters" : [ {
+          "name" : "language",
+          "in" : "path",
+          "description" : "Language",
+          "required" : true,
+          "schema" : {
+            "title" : "Language",
+            "maxLength" : 3,
+            "type" : "string",
+            "description" : "Language"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "description" : {
+                    "title" : "Description",
+                    "maxLength" : 30,
+                    "type" : "string",
+                    "description" : "Description"
+                  },
+                  "dateFormat2" : {
+                    "title" : "Date format 2",
+                    "maxLength" : 1,
+                    "type" : "string",
+                    "description" : "Date format 2"
+                  },
+                  "codedCharacterSetId" : {
+                    "title" : "Coded character set ID",
+                    "maxLength" : 10,
+                    "type" : "string",
+                    "description" : "Coded character set ID"
+                  },
+                  "languageIdentifier" : {
+                    "title" : "Language identifier",
+                    "maxLength" : 3,
+                    "type" : "string",
+                    "description" : "Language identifier"
+                  },
+                  "characterIdentifierControl" : {
+                    "title" : "Character identifier control",
+                    "maxLength" : 10,
+                    "type" : "string",
+                    "description" : "Character identifier control"
+                  },
+                  "endOfListString" : {
+                    "title" : "End of list string",
+                    "maxLength" : 80,
+                    "type" : "string",
+                    "description" : "End of list string"
+                  },
+                  "authorityErrorPrintString" : {
+                    "title" : "Authority error print string",
+                    "maxLength" : 80,
+                    "type" : "string",
+                    "description" : "Authority error print string"
+                  },
+                  "ISOLanguageCode" : {
+                    "title" : "ISO language code",
+                    "maxLength" : 3,
+                    "type" : "string",
+                    "description" : "ISO language code"
+                  },
+                  "dateSeparator" : {
+                    "title" : "Date separator",
+                    "maxLength" : 1,
+                    "type" : "string",
+                    "description" : "Date separator"
+                  },
+                  "decimalFormat" : {
+                    "title" : "Decimal format",
+                    "maxLength" : 1,
+                    "type" : "string",
+                    "description" : "Decimal format"
+                  },
+                  "translationFileMember" : {
+                    "title" : "Translation file member",
+                    "maxLength" : 10,
+                    "type" : "string",
+                    "description" : "Translation file member"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "language.update",
+            "openCrossRef" : true,
+            "program" : "MGRR0586"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Language" ],
+        "summary" : "Program to delete language",
+        "description" : "Program to delete language",
+        "parameters" : [ {
+          "name" : "language",
+          "in" : "path",
+          "description" : "Language",
+          "required" : true,
+          "schema" : {
+            "title" : "Language",
+            "maxLength" : 3,
+            "type" : "string",
+            "description" : "Language"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "204" : {
+            "description" : "OK - no content"
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "language.delete",
+            "openCrossRef" : true,
+            "program" : "MGRR0587"
+          }
+        }
+      }
+    },
+    "/pruchaseOrders/{orderNumber}/lines/{orderLineNumber}/receptions" : {
+      "get" : {
+        "tags" : [ "Purchase order" ],
+        "summary" : "This program is used to load information from purchase order line for RF device.",
+        "description" : "This program is used to load information from purchase order line for RF device.",
+        "parameters" : [ {
+          "name" : "orderNumber",
+          "in" : "path",
+          "description" : "Order number",
+          "required" : true,
+          "schema" : {
+            "title" : "Order number",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Order number",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "orderLineNumber",
+          "in" : "path",
+          "description" : "Order line number",
+          "required" : true,
+          "schema" : {
+            "title" : "Order line number",
+            "maximum" : 99999,
+            "type" : "integer",
+            "description" : "Order line number",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "orderNumber" : {
+                          "title" : "Order number",
+                          "maximum" : 999999999999,
+                          "type" : "integer",
+                          "description" : "Order number",
+                          "format" : "int64"
+                        },
+                        "suggestedLocation" : {
+                          "title" : "Suggested location",
+                          "maxLength" : 11,
+                          "type" : "string",
+                          "description" : "Suggested location"
+                        },
+                        "creationTime" : {
+                          "title" : "Creation time",
+                          "maxLength" : 8,
+                          "type" : "string",
+                          "description" : "Creation time",
+                          "format" : "time"
+                        },
+                        "recNoteLineNumber" : {
+                          "title" : "Reception note line",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Reception note line",
+                          "format" : "int32"
+                        },
+                        "serialNumberTrackingCode" : {
+                          "title" : "Serial number tracking code",
+                          "type" : "boolean",
+                          "description" : "Serial number tracking code"
+                        },
+                        "putAwayUnitConversionFactor" : {
+                          "title" : "Put away unit conversion factor",
+                          "maximum" : 999999.999999999,
+                          "minimum" : -999999.999999999,
+                          "type" : "number",
+                          "description" : "Put away unit conversion factor",
+                          "format" : "double"
+                        },
+                        "catchWeight" : {
+                          "title" : "Catch weight",
+                          "type" : "boolean",
+                          "description" : "Catch weight"
+                        },
+                        "suggestedPalletNumber" : {
+                          "title" : "Suggested pallet number",
+                          "maxLength" : 18,
+                          "type" : "string",
+                          "description" : "Suggested pallet number"
+                        },
+                        "sellByDateCode" : {
+                          "title" : "Sell by date",
+                          "type" : "boolean",
+                          "description" : "Sell by date"
+                        },
+                        "supplier" : {
+                          "title" : "Supplier number",
+                          "maxLength" : 11,
+                          "type" : "string",
+                          "description" : "Supplier number"
+                        },
+                        "numberOfRecNoteLines" : {
+                          "title" : "Number of lines",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Number of lines",
+                          "format" : "int32"
+                        },
+                        "suggestedQuantity" : {
+                          "title" : "Suggested quantity",
+                          "maximum" : 999999999999.999,
+                          "minimum" : -999999999999.999,
+                          "type" : "number",
+                          "description" : "Suggested quantity",
+                          "format" : "double"
+                        },
+                        "itemDescription" : {
+                          "title" : "Item description",
+                          "maxLength" : 50,
+                          "type" : "string",
+                          "description" : "Item description"
+                        },
+                        "suggestedPalletType" : {
+                          "title" : "Suggested pallet type",
+                          "maxLength" : 10,
+                          "type" : "string",
+                          "description" : "Suggested pallet type"
+                        },
+                        "shipmentNumber" : {
+                          "title" : "Shipment number",
+                          "maximum" : 999999999999,
+                          "type" : "integer",
+                          "description" : "Shipment number",
+                          "format" : "int64"
+                        },
+                        "suggestedBatch" : {
+                          "title" : "Suggested batch",
+                          "maxLength" : 13,
+                          "type" : "string",
+                          "description" : "Suggested batch"
+                        },
+                        "receptionlineNumberDelSeq" : {
+                          "title" : "Reception line number del seq",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Reception line number del seq",
+                          "format" : "int32"
+                        },
+                        "item" : {
+                          "title" : "Item",
+                          "maxLength" : 35,
+                          "type" : "string",
+                          "description" : "Item"
+                        },
+                        "printVersion" : {
+                          "title" : "Print version",
+                          "maximum" : 99,
+                          "type" : "integer",
+                          "description" : "Print version",
+                          "format" : "int32"
+                        },
+                        "batchCode" : {
+                          "title" : "Batch",
+                          "type" : "boolean",
+                          "description" : "Batch"
+                        },
+                        "catchWeightCode" : {
+                          "title" : "Catch weight",
+                          "type" : "boolean",
+                          "description" : "Catch weight"
+                        },
+                        "putAwayUnit" : {
+                          "title" : "Put away unit",
+                          "maxLength" : 5,
+                          "type" : "string",
+                          "description" : "Put away unit"
+                        },
+                        "warehouse" : {
+                          "title" : "Warehouse",
+                          "maxLength" : 3,
+                          "type" : "string",
+                          "description" : "Warehouse"
+                        },
+                        "creationDate" : {
+                          "title" : "Creation date",
+                          "maxLength" : 10,
+                          "type" : "string",
+                          "description" : "Creation date",
+                          "format" : "date"
+                        },
+                        "stockUnit" : {
+                          "title" : "Stock unit",
+                          "maxLength" : 5,
+                          "type" : "string",
+                          "description" : "Stock unit"
+                        },
+                        "sequence" : {
+                          "title" : "Sequence",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Sequence",
+                          "format" : "int32"
+                        },
+                        "subLineNumber" : {
+                          "title" : "Sub line number",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Sub line number",
+                          "format" : "int32"
+                        },
+                        "physicalWarehouse" : {
+                          "title" : "Physical warehouse",
+                          "maxLength" : 3,
+                          "type" : "string",
+                          "description" : "Physical warehouse"
+                        },
+                        "name" : {
+                          "title" : "Name",
+                          "maxLength" : 30,
+                          "type" : "string",
+                          "description" : "Name"
+                        },
+                        "orderLineNumber" : {
+                          "title" : "Order line number",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Order line number",
+                          "format" : "int32"
+                        },
+                        "qualityApprovalCode" : {
+                          "title" : "Quanlity approval",
+                          "type" : "boolean",
+                          "description" : "Quanlity approval"
+                        },
+                        "receptionNote" : {
+                          "title" : "Reception note",
+                          "maximum" : 999999999999,
+                          "type" : "integer",
+                          "description" : "Reception note",
+                          "format" : "int64"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "lineOrderReceptionNoteRF.get",
+            "openCrossRef" : false,
+            "program" : "MGRR1005C"
+          }
+        }
+      }
+    },
+    "/purchaseOrders/lines/receptionNote/cancel" : {
+      "post" : {
+        "tags" : [ "Purchase order" ],
+        "summary" : "This program is used to cancel a purchase order reception note for a select order line from a R/F de...",
+        "description" : "This program is used to cancel a purchase order reception note for a select order line from a R/F device",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "required" : [ "orderLineNumber", "orderNumber" ],
+                "type" : "object",
+                "properties" : {
+                  "orderNumber" : {
+                    "title" : "Order number",
+                    "maximum" : 999999999999,
+                    "type" : "integer",
+                    "description" : "Order number",
+                    "format" : "int64"
+                  },
+                  "orderLineNumber" : {
+                    "title" : "Order line number",
+                    "maximum" : 99999,
+                    "type" : "integer",
+                    "description" : "Order line number",
+                    "format" : "int32"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "lineReceptionNoteRF.cancel",
+            "openCrossRef" : true,
+            "program" : "MGRR1006C"
+          }
+        }
+      }
+    },
+    "/purchaseOrders/{orderNumber}/lines/{orderLineNumber}/receptionNoteLine" : {
+      "get" : {
+        "tags" : [ "Purchase order" ],
+        "summary" : "This program is used to load information from purchase order line for RF device.",
+        "description" : "This program is used to load information from purchase order line for RF device.",
+        "parameters" : [ {
+          "name" : "orderNumber",
+          "in" : "path",
+          "description" : "Order number",
+          "required" : true,
+          "schema" : {
+            "title" : "Order number",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Order number",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "orderLineNumber",
+          "in" : "path",
+          "description" : "Order line number",
+          "required" : true,
+          "schema" : {
+            "title" : "Order line number",
+            "maximum" : 99999,
+            "type" : "integer",
+            "description" : "Order line number",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "orderNumber" : {
+                          "title" : "Order number",
+                          "maximum" : 999999999999,
+                          "type" : "integer",
+                          "description" : "Order number",
+                          "format" : "int64"
+                        },
+                        "suggestedLocation" : {
+                          "title" : "Suggested location",
+                          "maxLength" : 11,
+                          "type" : "string",
+                          "description" : "Suggested location"
+                        },
+                        "creationTime" : {
+                          "title" : "Creation time",
+                          "maxLength" : 8,
+                          "type" : "string",
+                          "description" : "Creation time",
+                          "format" : "time"
+                        },
+                        "recNoteLineNumber" : {
+                          "title" : "Reception note line",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Reception note line",
+                          "format" : "int32"
+                        },
+                        "serialNumberTrackingCode" : {
+                          "title" : "Serial number tracking code",
+                          "type" : "boolean",
+                          "description" : "Serial number tracking code"
+                        },
+                        "putAwayUnitConversionFactor" : {
+                          "title" : "Put away unit conversion factor",
+                          "maximum" : 999999.999999999,
+                          "minimum" : -999999.999999999,
+                          "type" : "number",
+                          "description" : "Put away unit conversion factor",
+                          "format" : "double"
+                        },
+                        "catchWeight" : {
+                          "title" : "Catch weight",
+                          "type" : "boolean",
+                          "description" : "Catch weight"
+                        },
+                        "suggestedPalletNumber" : {
+                          "title" : "Suggested pallet number",
+                          "maxLength" : 18,
+                          "type" : "string",
+                          "description" : "Suggested pallet number"
+                        },
+                        "sellByDateCode" : {
+                          "title" : "Sell by date",
+                          "type" : "boolean",
+                          "description" : "Sell by date"
+                        },
+                        "supplier" : {
+                          "title" : "Supplier number",
+                          "maxLength" : 11,
+                          "type" : "string",
+                          "description" : "Supplier number"
+                        },
+                        "numberOfRecNoteLines" : {
+                          "title" : "Number of lines",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Number of lines",
+                          "format" : "int32"
+                        },
+                        "suggestedQuantity" : {
+                          "title" : "Suggested quantity",
+                          "maximum" : 999999999999.999,
+                          "minimum" : -999999999999.999,
+                          "type" : "number",
+                          "description" : "Suggested quantity",
+                          "format" : "double"
+                        },
+                        "itemDescription" : {
+                          "title" : "Item description",
+                          "maxLength" : 50,
+                          "type" : "string",
+                          "description" : "Item description"
+                        },
+                        "suggestedPalletType" : {
+                          "title" : "Suggested pallet type",
+                          "maxLength" : 10,
+                          "type" : "string",
+                          "description" : "Suggested pallet type"
+                        },
+                        "shipmentNumber" : {
+                          "title" : "Shipment number",
+                          "maximum" : 999999999999,
+                          "type" : "integer",
+                          "description" : "Shipment number",
+                          "format" : "int64"
+                        },
+                        "suggestedBatch" : {
+                          "title" : "Suggested batch",
+                          "maxLength" : 13,
+                          "type" : "string",
+                          "description" : "Suggested batch"
+                        },
+                        "receptionlineNumberDelSeq" : {
+                          "title" : "Reception line number del seq",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Reception line number del seq",
+                          "format" : "int32"
+                        },
+                        "item" : {
+                          "title" : "Item",
+                          "maxLength" : 35,
+                          "type" : "string",
+                          "description" : "Item"
+                        },
+                        "printVersion" : {
+                          "title" : "Print version",
+                          "maximum" : 99,
+                          "type" : "integer",
+                          "description" : "Print version",
+                          "format" : "int32"
+                        },
+                        "batchCode" : {
+                          "title" : "Batch",
+                          "type" : "boolean",
+                          "description" : "Batch"
+                        },
+                        "catchWeightCode" : {
+                          "title" : "Catch weight",
+                          "type" : "boolean",
+                          "description" : "Catch weight"
+                        },
+                        "putAwayUnit" : {
+                          "title" : "Put away unit",
+                          "maxLength" : 5,
+                          "type" : "string",
+                          "description" : "Put away unit"
+                        },
+                        "warehouse" : {
+                          "title" : "Warehouse",
+                          "maxLength" : 3,
+                          "type" : "string",
+                          "description" : "Warehouse"
+                        },
+                        "creationDate" : {
+                          "title" : "Creation date",
+                          "maxLength" : 10,
+                          "type" : "string",
+                          "description" : "Creation date",
+                          "format" : "date"
+                        },
+                        "stockUnit" : {
+                          "title" : "Stock unit",
+                          "maxLength" : 5,
+                          "type" : "string",
+                          "description" : "Stock unit"
+                        },
+                        "sequence" : {
+                          "title" : "Sequence",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Sequence",
+                          "format" : "int32"
+                        },
+                        "subLineNumber" : {
+                          "title" : "Sub line number",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Sub line number",
+                          "format" : "int32"
+                        },
+                        "physicalWarehouse" : {
+                          "title" : "Physical warehouse",
+                          "maxLength" : 3,
+                          "type" : "string",
+                          "description" : "Physical warehouse"
+                        },
+                        "name" : {
+                          "title" : "Name",
+                          "maxLength" : 30,
+                          "type" : "string",
+                          "description" : "Name"
+                        },
+                        "orderLineNumber" : {
+                          "title" : "Order line number",
+                          "maximum" : 99999,
+                          "type" : "integer",
+                          "description" : "Order line number",
+                          "format" : "int32"
+                        },
+                        "qualityApprovalCode" : {
+                          "title" : "Quanlity approval",
+                          "type" : "boolean",
+                          "description" : "Quanlity approval"
+                        },
+                        "receptionNote" : {
+                          "title" : "Reception note",
+                          "maximum" : 999999999999,
+                          "type" : "integer",
+                          "description" : "Reception note",
+                          "format" : "int64"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "lineReceptionNoteRF.get",
+            "openCrossRef" : false,
+            "program" : "MGRR1005A"
+          }
+        }
+      }
+    },
+    "/receptionNotes/{receptionNote}/lines/{sequence}/texts" : {
+      "get" : {
+        "tags" : [ "Purchase order" ],
+        "summary" : "This program is used to load information from purchase order line text for RF device.",
+        "description" : "This program is used to load information from purchase order line text for RF device.",
+        "parameters" : [ {
+          "name" : "receptionNote",
+          "in" : "path",
+          "description" : "Reception note",
+          "required" : true,
+          "schema" : {
+            "title" : "Reception note",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Reception note",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "sequence",
+          "in" : "path",
+          "description" : "Sequence",
+          "required" : true,
+          "schema" : {
+            "title" : "Sequence",
+            "maximum" : 99999,
+            "type" : "integer",
+            "description" : "Sequence",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "textExists" : {
+                          "title" : "Text exists",
+                          "type" : "boolean",
+                          "description" : "Text exists"
+                        },
+                        "items" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "sequence" : {
+                                "title" : "Sequence",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Sequence",
+                                "format" : "int32"
+                              },
+                              "recNoteLineNumber" : {
+                                "title" : "Line number",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Line number",
+                                "format" : "int32"
+                              },
+                              "text" : {
+                                "title" : "Text",
+                                "maxLength" : 70,
+                                "type" : "string",
+                                "description" : "Text"
+                              },
+                              "receptionNote" : {
+                                "title" : "Reception note",
+                                "maximum" : 999999999999,
+                                "type" : "integer",
+                                "description" : "Reception note",
+                                "format" : "int64"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "lineReceptionTextRF.get",
+            "openCrossRef" : true,
+            "program" : "MGRR1005B"
+          }
+        }
+      }
+    },
+    "/locationMovements/put" : {
+      "post" : {
+        "tags" : [ "Location" ],
+        "summary" : "This program is used to receive put operationn from R/F device for a location movement",
+        "description" : "This program is used to receive put operationn from R/F device for a location movement",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "required" : [ "warehouse" ],
+                "type" : "object",
+                "properties" : {
+                  "warehouse" : {
+                    "title" : "Warehouse",
+                    "maxLength" : 3,
+                    "type" : "string",
+                    "description" : "Warehouse"
+                  },
+                  "orderReferenceNumber" : {
+                    "title" : "Order reference number",
+                    "maximum" : 999999999999,
+                    "type" : "integer",
+                    "description" : "Order reference number",
+                    "format" : "int64"
+                  },
+                  "orderReferenceLineNumber" : {
+                    "title" : "Order reference line number",
+                    "maximum" : 99999,
+                    "type" : "integer",
+                    "description" : "Order reference line number",
+                    "format" : "int32"
+                  },
+                  "item" : {
+                    "title" : "Item",
+                    "maxLength" : 35,
+                    "type" : "string",
+                    "description" : "Item"
+                  },
+                  "quantity" : {
+                    "title" : "Quantity",
+                    "maximum" : 999999999999.999,
+                    "minimum" : -999999999999.999,
+                    "type" : "number",
+                    "description" : "Quantity",
+                    "format" : "double"
+                  },
+                  "unit" : {
+                    "title" : "Unit",
+                    "maxLength" : 5,
+                    "type" : "string",
+                    "description" : "Unit"
+                  },
+                  "batch" : {
+                    "title" : "Batch",
+                    "maxLength" : 13,
+                    "type" : "string",
+                    "description" : "Batch"
+                  },
+                  "serialNo" : {
+                    "title" : "Serial number",
+                    "maxLength" : 20,
+                    "type" : "string",
+                    "description" : "Serial number"
+                  },
+                  "palletNumber" : {
+                    "title" : "Pallet number",
+                    "maxLength" : 18,
+                    "type" : "string",
+                    "description" : "Pallet number"
+                  },
+                  "nonConformityCertificate" : {
+                    "title" : "NCC number",
+                    "maximum" : 999999999999,
+                    "type" : "integer",
+                    "description" : "NCC number",
+                    "format" : "int64"
+                  },
+                  "heldBalance" : {
+                    "title" : "Held balance",
+                    "type" : "boolean",
+                    "description" : "Held balance"
+                  },
+                  "location" : {
+                    "title" : "Location",
+                    "maxLength" : 11,
+                    "type" : "string",
+                    "description" : "Location"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "locationMovementRF.put",
+            "openCrossRef" : true,
+            "program" : "MGRR1014I"
+          }
+        }
+      }
+    },
+    "/locationMovements/pick" : {
+      "post" : {
+        "tags" : [ "Location" ],
+        "summary" : "This program is used to receive pick operation from R/F device for location movement",
+        "description" : "This program is used to receive pick operation from R/F device for location movement",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "required" : [ "warehouse" ],
+                "type" : "object",
+                "properties" : {
+                  "warehouse" : {
+                    "title" : "Warehouse",
+                    "maxLength" : 3,
+                    "type" : "string",
+                    "description" : "Warehouse"
+                  },
+                  "orderReferenceNumber" : {
+                    "title" : "Order reference number",
+                    "maximum" : 999999999999,
+                    "type" : "integer",
+                    "description" : "Order reference number",
+                    "format" : "int64"
+                  },
+                  "orderReferenceLineNumber" : {
+                    "title" : "Order reference line number",
+                    "maximum" : 99999,
+                    "type" : "integer",
+                    "description" : "Order reference line number",
+                    "format" : "int32"
+                  },
+                  "item" : {
+                    "title" : "Item",
+                    "maxLength" : 35,
+                    "type" : "string",
+                    "description" : "Item"
+                  },
+                  "quantity" : {
+                    "title" : "Quantity",
+                    "maximum" : 999999999999.999,
+                    "minimum" : -999999999999.999,
+                    "type" : "number",
+                    "description" : "Quantity",
+                    "format" : "double"
+                  },
+                  "unit" : {
+                    "title" : "Unit",
+                    "maxLength" : 5,
+                    "type" : "string",
+                    "description" : "Unit"
+                  },
+                  "batch" : {
+                    "title" : "Batch",
+                    "maxLength" : 13,
+                    "type" : "string",
+                    "description" : "Batch"
+                  },
+                  "serialNo" : {
+                    "title" : "Serial number",
+                    "maxLength" : 20,
+                    "type" : "string",
+                    "description" : "Serial number"
+                  },
+                  "palletNumber" : {
+                    "title" : "Pallet number",
+                    "maxLength" : 18,
+                    "type" : "string",
+                    "description" : "Pallet number"
+                  },
+                  "nonConformityCertificate" : {
+                    "title" : "NCC number",
+                    "maximum" : 999999999999,
+                    "type" : "integer",
+                    "description" : "NCC number",
+                    "format" : "int64"
+                  },
+                  "heldBalance" : {
+                    "title" : "Held balance",
+                    "type" : "boolean",
+                    "description" : "Held balance"
+                  },
+                  "location" : {
+                    "title" : "Location",
+                    "maxLength" : 11,
+                    "type" : "string",
+                    "description" : "Location"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "locationMovementRF.pick",
+            "openCrossRef" : true,
+            "program" : "MGRR1014H"
+          }
+        }
+      }
+    },
+    "/locationSuspends/{warehouse}/{location}" : {
+      "put" : {
+        "tags" : [ "Location" ],
+        "summary" : "This program is used to receive Yes/No code a location is counted empty or not.",
+        "description" : "This program is used to receive Yes/No code a location is counted empty or not.",
+        "parameters" : [ {
+          "name" : "warehouse",
+          "in" : "path",
+          "description" : "Warehouse",
+          "required" : true,
+          "schema" : {
+            "title" : "Warehouse",
+            "maxLength" : 3,
+            "type" : "string",
+            "description" : "Warehouse"
+          }
+        }, {
+          "name" : "location",
+          "in" : "path",
+          "description" : "Location",
+          "required" : true,
+          "schema" : {
+            "title" : "Location",
+            "maxLength" : 11,
+            "type" : "string",
+            "description" : "Location"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "emptyCode" : {
+                    "title" : "Empty",
+                    "type" : "boolean",
+                    "description" : "Empty"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "locationSuspend.update",
+            "openCrossRef" : true,
+            "program" : "MGRR1012"
+          }
+        }
+      }
+    },
+    "/lostSales/statistics" : {
+      "get" : {
+        "tags" : [ "Sales order" ],
+        "summary" : "This program  get lost sale statistics accoring to the selection",
+        "description" : "This program  get lost sale statistics accoring to the selection",
+        "parameters" : [ {
+          "name" : "order",
+          "in" : "query",
+          "description" : "Order number",
+          "schema" : {
+            "title" : "Order number",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Order number",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "orderFrom",
+          "in" : "query",
+          "description" : "Order number from",
+          "schema" : {
+            "title" : "Order number from",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Order number from",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "orderTo",
+          "in" : "query",
+          "description" : "Order number to",
+          "schema" : {
+            "title" : "Order number to",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Order number to",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "picklist",
+          "in" : "query",
+          "description" : "Pick list number",
+          "schema" : {
+            "title" : "Pick list number",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Pick list number",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "picklistFrom",
+          "in" : "query",
+          "description" : "Picklist from",
+          "schema" : {
+            "title" : "Picklist from",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Picklist from",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "picklistTo",
+          "in" : "query",
+          "description" : "Picklist to",
+          "schema" : {
+            "title" : "Picklist to",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Picklist to",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "saleOpportunityStatus",
+          "in" : "query",
+          "description" : "Sale opportunity status",
+          "schema" : {
+            "title" : "Sale opportunity status",
+            "maxLength" : 1,
+            "type" : "string",
+            "description" : "Sale opportunity status"
+          }
+        }, {
+          "name" : "saleOpportunityStatusPV",
+          "in" : "query",
+          "description" : "Panel value for sale opportunity status",
+          "schema" : {
+            "title" : "Panel value for sale opportunity status",
+            "maxLength" : 1,
+            "type" : "string",
+            "description" : "Panel value for sale opportunity status"
+          }
+        }, {
+          "name" : "customer",
+          "in" : "query",
+          "description" : "Customer number",
+          "schema" : {
+            "title" : "Customer number",
+            "maxLength" : 11,
+            "type" : "string",
+            "description" : "Customer number"
+          }
+        }, {
+          "name" : "handler",
+          "in" : "query",
+          "description" : "Handler",
+          "schema" : {
+            "title" : "Handler",
+            "maxLength" : 10,
+            "type" : "string",
+            "description" : "Handler"
+          }
+        }, {
+          "name" : "lostSaleReason",
+          "in" : "query",
+          "description" : "Lost sale reason code",
+          "schema" : {
+            "title" : "Lost sale reason code",
+            "maxLength" : 6,
+            "type" : "string",
+            "description" : "Lost sale reason code"
+          }
+        }, {
+          "name" : "lostSaleDate",
+          "in" : "query",
+          "description" : "Lost sale date",
+          "schema" : {
+            "title" : "Lost sale date",
+            "maxLength" : 10,
+            "type" : "string",
+            "description" : "Lost sale date",
+            "format" : "date"
+          }
+        }, {
+          "name" : "lostSaleDateFrom",
+          "in" : "query",
+          "description" : "Lost sale date from",
+          "schema" : {
+            "title" : "Lost sale date from",
+            "maxLength" : 10,
+            "type" : "string",
+            "description" : "Lost sale date from",
+            "format" : "date"
+          }
+        }, {
+          "name" : "lostSaleDateTo",
+          "in" : "query",
+          "description" : "Lost sale date to",
+          "schema" : {
+            "title" : "Lost sale date to",
+            "maxLength" : 10,
+            "type" : "string",
+            "description" : "Lost sale date to",
+            "format" : "date"
+          }
+        }, {
+          "name" : "item",
+          "in" : "query",
+          "description" : "Item",
+          "schema" : {
+            "title" : "Item",
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Item"
+          }
+        }, {
+          "name" : "itemFrom",
+          "in" : "query",
+          "description" : "Item from",
+          "schema" : {
+            "title" : "Item from",
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Item from"
+          }
+        }, {
+          "name" : "itemTo",
+          "in" : "query",
+          "description" : "Item to",
+          "schema" : {
+            "title" : "Item to",
+            "maxLength" : 35,
+            "type" : "string",
+            "description" : "Item to"
+          }
+        }, {
+          "name" : "distinctItem",
+          "in" : "query",
+          "description" : "Distinct items",
+          "schema" : {
+            "title" : "Distinct items",
+            "type" : "boolean",
+            "description" : "Distinct items"
+          }
+        }, {
+          "$ref" : "#/components/parameters/control-offset"
+        }, {
+          "$ref" : "#/components/parameters/control-limit"
+        }, {
+          "$ref" : "#/components/parameters/control-orderBy"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "items" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "pickListLine" : {
+                                "title" : "Pick list line number",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Pick list line number",
+                                "format" : "int32"
+                              },
+                              "handler" : {
+                                "title" : "Handler",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Handler"
+                              },
+                              "item" : {
+                                "title" : "Item",
+                                "maxLength" : 35,
+                                "type" : "string",
+                                "description" : "Item"
+                              },
+                              "quantity" : {
+                                "title" : "Quantity",
+                                "maximum" : 999999999999.999,
+                                "minimum" : -999999999999.999,
+                                "type" : "number",
+                                "description" : "Quantity",
+                                "format" : "double"
+                              },
+                              "lostSaleReason" : {
+                                "title" : "Lost sale reason code",
+                                "maxLength" : 6,
+                                "type" : "string",
+                                "description" : "Lost sale reason code"
+                              },
+                              "orderLine" : {
+                                "title" : "Order line number",
+                                "maximum" : 99999,
+                                "type" : "integer",
+                                "description" : "Order line number",
+                                "format" : "int32"
+                              },
+                              "picklist" : {
+                                "title" : "Pick list number",
+                                "maximum" : 999999999999,
+                                "type" : "integer",
+                                "description" : "Pick list number",
+                                "format" : "int64"
+                              },
+                              "lostSaleDate" : {
+                                "title" : "Lost sale date",
+                                "maxLength" : 10,
+                                "type" : "string",
+                                "description" : "Lost sale date",
+                                "format" : "date"
+                              },
+                              "unit" : {
+                                "title" : "Unit",
+                                "maxLength" : 5,
+                                "type" : "string",
+                                "description" : "Unit"
+                              },
+                              "decription" : {
+                                "title" : "Description",
+                                "maxLength" : 30,
+                                "type" : "string",
+                                "description" : "Description"
+                              },
+                              "saleOpportunityStatus" : {
+                                "title" : "Sale opportunity status",
+                                "maxLength" : 1,
+                                "type" : "string",
+                                "description" : "Sale opportunity status"
+                              },
+                              "saleOpportunityStatusPV" : {
+                                "title" : "Panel value for sale opportunity status",
+                                "maxLength" : 1,
+                                "type" : "string",
+                                "description" : "Panel value for sale opportunity status"
+                              },
+                              "order" : {
+                                "title" : "Order number",
+                                "maximum" : 999999999999,
+                                "type" : "integer",
+                                "description" : "Order number",
+                                "format" : "int64"
+                              },
+                              "customer" : {
+                                "title" : "Customer number",
+                                "maxLength" : 11,
+                                "type" : "string",
+                                "description" : "Customer number"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "control" : {
+                      "title" : "Total records",
+                      "type" : "object",
+                      "properties" : {
+                        "total" : {
+                          "$ref" : "#/components/schemas/control-total"
+                        }
+                      },
+                      "description" : "Total number of records in file (array)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "lostSalesStatistics.get",
+            "openCrossRef" : false,
+            "program" : "MGRR0136"
+          }
+        }
+      }
+    },
+    "/lostSales/statistics/orders/{order}/lines/{orderLine}" : {
+      "put" : {
+        "tags" : [ "Sales order" ],
+        "summary" : "This program updates lost sale statistc file",
+        "description" : "This program updates lost sale statistc file",
+        "parameters" : [ {
+          "name" : "order",
+          "in" : "path",
+          "description" : "Order number",
+          "required" : true,
+          "schema" : {
+            "title" : "Order number",
+            "maximum" : 999999999999,
+            "type" : "integer",
+            "description" : "Order number",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "orderLine",
+          "in" : "path",
+          "description" : "Order line number",
+          "required" : true,
+          "schema" : {
+            "title" : "Order line number",
+            "maximum" : 99999,
+            "type" : "integer",
+            "description" : "Order line number",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "picklist" : {
+                    "title" : "Pick list number",
+                    "maximum" : 999999999999,
+                    "type" : "integer",
+                    "description" : "Pick list number",
+                    "format" : "int64"
+                  },
+                  "pickListLine" : {
+                    "title" : "Pick list line number",
+                    "maximum" : 99999,
+                    "type" : "integer",
+                    "description" : "Pick list line number",
+                    "format" : "int32"
+                  },
+                  "version" : {
+                    "title" : "Version number",
+                    "maximum" : 99,
+                    "type" : "integer",
+                    "description" : "Version number",
+                    "format" : "int32"
+                  },
+                  "saleOpportunityStatus" : {
+                    "title" : "Sale opportunity status",
+                    "maxLength" : 1,
+                    "type" : "string",
+                    "description" : "Sale opportunity status"
+                  },
+                  "saleOpportunityStatusPV" : {
+                    "title" : "Panel value for sale opportunity status",
+                    "maxLength" : 1,
+                    "type" : "string",
+                    "description" : "Panel value for sale opportunity status"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "object",
+                      "properties" : {
+                        "error" : {
+                          "title" : "Return code",
+                          "maxLength" : 2,
+                          "type" : "string",
+                          "description" : "Return code"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Client error",
+            "$ref" : "#/components/responses/default-error"
+          }
+        },
+        "x-aperio" : {
+          "control-parameters" : {
+            "method" : "lostSalesStatistic.update",
+            "openCrossRef" : true,
+            "program" : "MGRR0137"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "default-error" : {
+        "type" : "object",
+        "properties" : {
+          "messages" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object"
+            }
+          },
+          "error" : {
+            "type" : "object",
+            "properties" : {
+              "code" : {
+                "type" : "integer"
+              },
+              "message" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      },
+      "control-freeTextSearch" : {
+        "title" : "Free text search",
+        "maxLength" : 200,
+        "type" : "string",
+        "description" : "Words, space divided used to search trough database"
+      },
+      "control-offset" : {
+        "title" : "Start offset",
+        "maximum" : 999999999,
+        "type" : "integer",
+        "description" : "Start offset used for paging",
+        "format" : "int32"
+      },
+      "control-accept-response" : {
+        "title" : "accept-response",
+        "maxLength" : 200,
+        "type" : "string",
+        "description" : "List of elements from IADF response which should be included in res"
+      },
+      "control-limit" : {
+        "title" : "Limit of records",
+        "maximum" : 999999999,
+        "type" : "integer",
+        "description" : "Maximum number of records in one response",
+        "format" : "int32"
+      },
+      "control-orderBy" : {
+        "title" : "Order by",
+        "maxLength" : 200,
+        "type" : "string",
+        "description" : "Database fields space divided which describes order of result respo"
+      },
+      "control-fields" : {
+        "title" : "Fields",
+        "maxLength" : 200,
+        "type" : "string",
+        "description" : "List of fields which should be returned in response"
+      },
+      "control-total" : {
+        "title" : "Total records",
+        "maximum" : 999999999,
+        "type" : "integer",
+        "description" : "Total number of records in file (array)",
+        "format" : "int32"
+      },
+      "control-more" : {
+        "title" : "More records",
+        "type" : "boolean",
+        "description" : "Indicates if there are more records in file"
+      }
+    },
+    "responses" : {
+      "default-error" : {
+        "description" : "Default error response",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/default-error"
+            }
+          }
+        }
+      }
+    },
+    "parameters" : {
+      "control-freeTextSearch" : {
+        "name" : "freeTextSearch",
+        "in" : "query",
+        "description" : "Words, space divided used to search trough database",
+        "schema" : {
+          "$ref" : "#/components/schemas/control-freeTextSearch"
+        },
+        "x-aperio" : {
+          "in" : "control"
+        }
+      },
+      "control-offset" : {
+        "name" : "offset",
+        "in" : "query",
+        "description" : "Start offset used for paging",
+        "schema" : {
+          "$ref" : "#/components/schemas/control-offset"
+        },
+        "x-aperio" : {
+          "in" : "control"
+        }
+      },
+      "control-accept-response" : {
+        "name" : "accept-response",
+        "in" : "query",
+        "description" : "List of elements from IADF response which should be included in res",
+        "schema" : {
+          "$ref" : "#/components/schemas/control-accept-response"
+        },
+        "x-aperio" : {
+          "in" : "control"
+        }
+      },
+      "control-limit" : {
+        "name" : "limit",
+        "in" : "query",
+        "description" : "Maximum number of records in one response",
+        "schema" : {
+          "$ref" : "#/components/schemas/control-limit"
+        },
+        "x-aperio" : {
+          "in" : "control"
+        }
+      },
+      "control-orderBy" : {
+        "name" : "orderBy",
+        "in" : "query",
+        "description" : "Database fields space divided which describes order of result respo",
+        "schema" : {
+          "$ref" : "#/components/schemas/control-orderBy"
+        },
+        "x-aperio" : {
+          "in" : "control"
+        }
+      },
+      "control-fields" : {
+        "name" : "fields",
+        "in" : "query",
+        "description" : "List of fields which should be returned in response",
+        "schema" : {
+          "$ref" : "#/components/schemas/control-fields"
+        },
+        "x-aperio" : {
+          "in" : "control"
+        }
+      }
+    }
+  }
+}
