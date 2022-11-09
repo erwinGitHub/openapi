@@ -45250,7 +45250,7 @@
         }
       }
     },
-    "/warehouses/{warehouse}/items{item}/inventoryAdjust/pharma/serialNumberInfo" : {
+    "/warehouses/{warehouse}/items/{item}/inventoryAdjust/pharma/serialNumberInfo" : {
       "get" : {
         "tags" : [ "Inventory" ],
         "summary" : "This program is used to receive information for pharma serial item, used in inventory adjustment.",
@@ -60659,7 +60659,7 @@
         }
       }
     },
-    "/receptionNotes/{receptionNote}/lines{sequence}/texts}" : {
+    "/receptionNotes/{receptionNote}/lines/{sequence}/{texts}" : {
       "get" : {
         "tags" : [ "Purchase order" ],
         "summary" : "This program is used to load information from purchase order line text for RF device.",

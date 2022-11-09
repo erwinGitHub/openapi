@@ -684,7 +684,7 @@
         }
       }
     },
-    "/manufacturingOrders/receptions/instructions{warehouse}" : {
+    "/manufacturingOrders/receptions/instructions/{warehouse}" : {
       "get" : {
         "tags" : [ "Manufacturing order" ],
         "summary" : "This program is used to retrieve all open mananufacturing receptions to the R/F device",
