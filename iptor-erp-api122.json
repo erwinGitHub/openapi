@@ -13929,7 +13929,7 @@
         }
       }
     },
-    "/purchaseOrders/{orderNumber}/lines/{orderLineNumber}/receptionNotes}" : {
+    "/purchaseOrders/{orderNumber}/lines/{orderLineNumber}/receptionNoteLine" : {
       "get" : {
         "tags" : [ "Purchase order" ],
         "summary" : "This program is used to load information from purchase order line for RF device.",
